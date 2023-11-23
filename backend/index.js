@@ -64,10 +64,10 @@ app.use(cors({ origin: true, credentials: true }));
 const PORT = process.env.PORT || 5000;
 
 //Connection Parameters Passing in mongoose.connect() method.
-const CONNECTION_PARAMS = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
+// const CONNECTION_PARAMS = {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// };
 
 // use() function is used to mount the specified middleware function(s) at the path which is being specified.
 app.use("/auth", authRouter);
@@ -82,7 +82,7 @@ app.get("/", (req, res) => {
 });
 
 // Connecting with MongoDB with the mongoose.connect() method.
-mongoose.connect(process.env.CONNECTION_URL, CONNECTION_PARAMS)
+mongoose.connect(process.env.CONNECTION_URL)
   .then(() => app.listen(PORT, console.log(`Server running on port: ${PORT}`)))
   .catch((error) => console.log(error.message));
 
