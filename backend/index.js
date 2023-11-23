@@ -53,10 +53,10 @@ app.use('/static',express.static('public'))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'https://jdmatrix.vercel.app');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://directory-gamma.vercel.app/');
+  next();
+});
 
 app.use(cors({ origin: true, credentials: true }));
 
