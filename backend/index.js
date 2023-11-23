@@ -71,9 +71,9 @@ const PORT = process.env.PORT || 5000;
 
 // use() function is used to mount the specified middleware function(s) at the path which is being specified.
 app.use("/auth", authRouter);
-app.use("/user", userRouter);
-app.use("/folder", folderRouter);
-app.use("/file", fileRouter);
+// app.use("/user", userRouter);
+// app.use("/folder", folderRouter);
+// app.use("/file", fileRouter);
 // app.use("/organization", organizationRouter);
 
 // The app.get() responds with “Hello to ToDo App API” for requests to the root URL (/) or route.
