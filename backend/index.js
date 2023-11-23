@@ -18,9 +18,9 @@ import dotenv from "dotenv";
 
 //routes importing
 import authRouter from "./routes/auth.js";
-import userRouter from "./routes/users.js";
-import folderRouter from "./routes/folder.js";
-import fileRouter from "./routes/files.js";
+// import userRouter from "./routes/users.js";
+// import folderRouter from "./routes/folder.js";
+// import fileRouter from "./routes/files.js";
 
 // import organizationRouter from "./routes/organization.js";
 import cloudinary from 'cloudinary';
