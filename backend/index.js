@@ -18,9 +18,9 @@ import dotenv from "dotenv";
 
 //routes importing
 import authRouter from "./routes/auth.js";
-// import userRouter from "./routes/users.js";
-// import folderRouter from "./routes/folder.js";
-// import fileRouter from "./routes/files.js";
+import userRouter from "./routes/users.js";
+import folderRouter from "./routes/folder.js";
+import fileRouter from "./routes/files.js";
 
 // import organizationRouter from "./routes/organization.js";
 import cloudinary from 'cloudinary';
@@ -64,16 +64,16 @@ app.use(cors({ origin: true, credentials: true }));
 const PORT = process.env.PORT || 5000;
 
 //Connection Parameters Passing in mongoose.connect() method.
-// const CONNECTION_PARAMS = {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// };
+const CONNECTION_PARAMS = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
 
 // use() function is used to mount the specified middleware function(s) at the path which is being specified.
 app.use("/auth", authRouter);
-// app.use("/user", userRouter);
-// app.use("/folder", folderRouter);
-// app.use("/file", fileRouter);
+app.use("/user", userRouter);
+app.use("/folder", folderRouter);
+app.use("/file", fileRouter);
 // app.use("/organization", organizationRouter);
 
 // The app.get() responds with “Hello to ToDo App API” for requests to the root URL (/) or route.
@@ -82,7 +82,7 @@ app.get("/", (req, res) => {
 });
 
 // Connecting with MongoDB with the mongoose.connect() method.
-mongoose.connect(process.env.CONNECTION_URL,{ useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTION_URL, CONNECTION_PARAMS)
   .then(() => app.listen(PORT, console.log(`Server running on port: ${PORT}`)))
   .catch((error) => console.log(error.message));
 
