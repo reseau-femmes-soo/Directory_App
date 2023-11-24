@@ -54,9 +54,9 @@ export const createFile= async (req, res)=>{
                 try{
 
                     await cloudinary.v2.uploader.upload(file.path, { folder: "Directory_APP", resource_type: 'raw' }, async (err, result) => {
-                    if(err) throw err;
-                    removeTmp(file.path)
-                    files.path= { public_id: result.public_id, url: result.secure_url }
+                        if(err) throw err;
+                        removeTmp(file.path)
+                        files.path= { public_id: result.public_id, url: result.secure_url }
                     })
                 }catch(error){
                     console.log(error)
@@ -155,12 +155,19 @@ export const DeleteFile= async (req,res)=>{
     const {id} = req.params;
 
     try {
-        const subdepartmenCount = await Files.countDocuments({parent_id:id});
-        if(subdepartmenCount>0){
-            return res.status(404).json({ message: "Cannot Delete File because it has Sub-Files" });
+        const fileData = await Files.findOne({_id:id});
+        
+        // Specify the public ID of the file you want to delete
+        const publicIdToDelete = fileData.path.public_id;
+
+        const respurse_deleted = await cloudinary.v2.api.delete_resources([publicIdToDelete],{ type: 'upload', resource_type: 'raw' });
+        if(respurse_deleted){
+            const delete_file=await Files.findOneAndDelete({_id:id})
+            return res.status(200).json({ message: "File Deleted"});
+        }else{
+            return res.status(500).json({ message: "Unable to Delete File"});
         }
-        const deleteFile=await Files.findOneAndDelete({_id:id});
-        return res.status(200).json({ message: "File Deleted"});
+
     } catch (error) {
         console.error('Error creating file:', error);
         return res.status(500).json({ message: error });

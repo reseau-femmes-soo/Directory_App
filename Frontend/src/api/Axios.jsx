@@ -74,3 +74,17 @@ export const UPDATE = async (url,data,loading) => {
     loading(false);
   }
 };
+export const DELETE = async (url,loading) => {
+  try {
+    const response = await API.delete(url);
+    loading(false);
+    return response;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      error.message = error.response.data.message;
+    }
+    toast.error(error.message);
+    console.log(error.message)
+    loading(false);
+  }
+};

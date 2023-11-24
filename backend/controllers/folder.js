@@ -120,11 +120,13 @@ export const UpdateFolders=async(req, res)=>{
 
 export const DeleteFolder= async (req,res)=>{
     const {id} = req.params;
-
+    console.log(id)
     try {
         const subdepartmenCount = await Folders.countDocuments({parent_id:id});
-        if(subdepartmenCount>0){
-            return res.status(404).json({ message: "Cannot Delete Folder because it has Sub-Folders" });
+        const subfileCount = await Files.countDocuments({folder_id:id});
+        console.log({subdepartmenCount,subfileCount})
+        if(subdepartmenCount>0 ||  subfileCount>0){
+            return res.status(404).json({ message: "Cannot Delete Folder because it has Sub-Folders & Files" });
         }
         const deleteFolder=await Folders.findOneAndDelete({_id:id});
         return res.status(200).json({ message: "Folder Deleted"});
