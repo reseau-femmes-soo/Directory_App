@@ -26,7 +26,7 @@ export const POST = async (url,data,loading) => {
 export const POSTFILE = async (url,data,loading) => {
   try {
     const token = localStorage.getItem('token');
-    
+    console.log(token)
     const response = await axios.post(
       process.env.REACT_APP_BACKEND_URL+url, 
       data,
@@ -37,8 +37,10 @@ export const POSTFILE = async (url,data,loading) => {
         }
       }
     );
+
     return response;
   } catch (error) {
+    console.log(error);
     if (error.response && error.response.data.message) {
       error.message = error.response.data.message;
     }
