@@ -39,7 +39,7 @@ const Routers = () => {
           <Route  path={'/password'} element={<Password />} />
           <Route  path={'/home'} element={<Home />} />
 
-          <Route  path={'/add_dealer'} element={<Add />} />
+          <Route  path={'/add_member'} element={<Add />} />
           <Route  path={'/members'} element={<View/>} />
           <Route path="/folders/:folderId/" element={<FolderComponent/>} />
 

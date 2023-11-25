@@ -12,7 +12,6 @@ const BaseInput = () => {
         <Row>
           <Col sm='12'>
             <BasicFormControlClass />
-       
           </Col>
         </Row>
       </Container>

@@ -42,21 +42,21 @@ const UserHeader = () => {
           
         />
         <div className="media-body">
-          <span>{authenticated ? auth0_profile.name : name}</span>
+          <span>Welcome</span>
           <P attrPara={{ className: "mb-0 font-roboto" }}>
             {userRole ==="admin" ? (
               <>
-                {Admin} <i className="middle fa fa-angle-down"></i>
+                {Admin}
               </>
             ) : (
               <>
-                {Member} <i className="middle fa fa-angle-down"></i>
+                {Member}
               </>
             )}
           </P>
         </div>
       </div>
-      <UL attrUL={{ className: "simple-list profile-dropdown onhover-show-div" }}>
+      {/* <UL attrUL={{ className: "simple-list profile-dropdown onhover-show-div" }}>
         <LI
           attrLI={{
             onClick: () => UserMenuRedirect(`${process.env.PUBLIC_URL}/app/users/profile/${layoutURL}`),
@@ -77,7 +77,7 @@ const UserHeader = () => {
           <LogIn />
           <span>{LogOut}</span>
         </LI>
-      </UL>
+      </UL> */}
     </li>
   );
 };

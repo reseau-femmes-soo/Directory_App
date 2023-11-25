@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from 'axios';
 import image from '../assets/images/logo/logo.png';
 import { POST } from "../api/Axios";
+
 const Signin = ({ selected }) => {
 
   const [user,setUser]=useState({
@@ -53,7 +54,7 @@ const Signin = ({ selected }) => {
                   <div className="text-center mb-1">
                     <img src={image} alt="Logo" height={80}/>
                   </div>
-                  <H4>{selected === "simpleLogin" ? "" : "Sign In With Simple Login"}</H4>
+                  <H4>{selected === "simpleLogin" ? "" : "Login"}</H4>
                   <P>{"Enter your email & password to login"}</P>
                   <FormGroup>
                     <Label className="col-form-label">{EmailAddress}</Label>
@@ -70,20 +71,14 @@ const Signin = ({ selected }) => {
                     </div>
                   </FormGroup>
                   <div className="position-relative form-group mb-0">
-                    <div className="checkbox">
-                      <Input id="checkbox1" type="checkbox" />
-                      <Label className="text-muted" for="checkbox1">
-                        {RememberPassword}
-                      </Label>
-                    </div>
-                    <a className="link" href="forget">
+                    
+                    <a className="forgot_link" href="forget">
                       {ForgotPassword}
                     </a>
-                    <button className="d-block w-100 mt-2 signin-button text-white p-1 rounded-top rounded-bottom border-none" disabled={loading}>
+                    <button className="btn w-100"  disabled={loading}>
                       {loading ? 'Logging in...' : SignIn}
                     </button>
                   </div>
-                  <OtherWay />
                 </Form>
               </div>
             </div>

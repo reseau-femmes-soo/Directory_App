@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Media } from 'reactstrap';
 import { Image } from '../../../AbstractElements';
+import { MdClose, MdMoreVert } from 'react-icons/md';
 
 
 const renderProfilePhoto = (photoName) => (
@@ -13,7 +14,6 @@ export const tableColumns = [
         name: 'Name',
         selector: (row) => (
             <div className="d-flex align-items-center">
-                
                 <span>{row.name}</span>
             </div>
         ),
@@ -48,14 +48,7 @@ export const tableColumns = [
         name: 'Actions',
         selector: (row) => (
           
-            <Button
-              color="danger"
-              // onClick={() => {
-              //   handleDelete(row.email);
-              // }}
-            >
-              Delete
-            </Button>
+          <MdClose  style={{ fontSize: '23px', color: 'red',cursor:'pointer',float:'right'}} />
           ),
         
         center: true,

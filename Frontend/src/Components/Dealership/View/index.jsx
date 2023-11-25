@@ -13,7 +13,8 @@ const DataTables = () => {
         <Row>
           <Col sm="12">
             <Card>
-              <HeaderCard title="Réseau-femmes Members" />   
+              <HeaderCard title="Réseau-femmes Members" link="add_member" link_text={"Add Member"}/>
+               
               <CardBody>
                 <DataTableComponent />
               </CardBody>

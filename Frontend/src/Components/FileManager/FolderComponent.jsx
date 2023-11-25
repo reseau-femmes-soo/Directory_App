@@ -149,7 +149,7 @@ function FolderComponent() {
   
   
   return (
-    <div className="container" style={{marginTop:'100px',backgroundColor:'#ffffff',border:'1px solid grey',borderRadius:'10px' }}>
+    <div className="container" style={{marginTop:'100px',backgroundColor:'#ffffff',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'10px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between'}} className='mt-4'>
         <div>
           <h3>Content </h3>
@@ -157,7 +157,7 @@ function FolderComponent() {
         {
           userRole==="admin"?  
             <div >
-                <button class="btn" onClick={() => setShowUploadModal(true)} style={{backgroundColor:'#6b2a7d', color:'white',padding: '5px',margin:'3px'}}>Upload a File</button>
+                <button class="btn" onClick={() => setShowUploadModal(true)} style={{width:'200px'}}>Upload a File</button>
                 <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Upload a File</Modal.Title>
@@ -168,29 +168,29 @@ function FolderComponent() {
                       value={file.name}
                       onChange={(e) => setFile({...file,name:e.target.value})}
                       placeholder="Enter folder name"
-                      style={{ width: '100%', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem' }}
+                      className='form-control'
                     />
                     <input
                       type="file"
                       onChange={(e) => setFile({...file,file:e.target.files[0]})}
                       name='file'
                       ref={fileInputRef}
-                      style={{ width: '100%', padding: '0.5rem', marginBottom: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
+                      className='form-control mt-3'
                     />
                     {uploading && <p style={{ color: '#27ae60' }}>Uploading...</p>}
                   </Modal.Body>
                   <Modal.Footer style={{ borderTop: 'none' }}>
-                    <Button variant="danger"  onClick={() => setShowUploadModal(false)}>
+                    <button className="btn"  onClick={() => setShowUploadModal(false)}>
                       Close
-                    </Button>
-                    <button variant="primary" className='btn' onClick={handleUpload} disabled={uploading} style={{ backgroundColor: '#6b2a7d' , color:'white', padding:'5px', borderRadius:'5px'}}>
+                    </button>
+                    <button className="btn" onClick={handleUpload} disabled={uploading} >
                       {uploading ? 'Uploading...' : 'Upload'}
                     </button>
                   </Modal.Footer>
                 </Modal>
               
               
-                <button class="btn" onClick={() => setShowCreateModal(true)} style={{backgroundColor:'#6b2a7d', color:'white' ,padding: '5px',margin:'3px'}}>Create a Folder</button>
+                <button class="btn" onClick={() => setShowCreateModal(true)} style={{width:'200px'}}>Create a Folder</button>
                 <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
                 <Modal.Header closeButton>
                   <Modal.Title style={{ fontSize: '2rem' }}>Create a Folder</Modal.Title>
@@ -201,16 +201,16 @@ function FolderComponent() {
                     value={newFolderName}
                     onChange={(e) => setNewFolderName(e.target.value)}
                     placeholder="Enter folder name"
-                    style={{ width: '100%', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem' }}
+                    className='form-control'
                   />
                   {creatingFolder && <p style={{ color: '#6b2a7d' }}>Creating folder...</p>}
                 </Modal.Body>
                 <Modal.Footer style={{ borderTop: 'none' }}>
-                  <button style={{ backgroundColor: '#8B0000' , color:'white', padding:'6px', borderRadius:'5px', border:'none'}} onClick={() => setShowCreateModal(false)}>
+                  <button className='btn' onClick={() => setShowCreateModal(false)}>
                     Close
                   </button>
-                  <button style={{ backgroundColor: '#6b2a7d' , color:'white', padding:'5px', borderRadius:'5px'}} onClick={handleCreateFolder} disabled={uploading}>
-                  {uploading ? 'Creating...' : 'Create Folder'}
+                  <button className='btn' onClick={handleCreateFolder} disabled={uploading}>
+                    {uploading ? 'Creating...' : 'Create Folder'}
                   </button>
                 </Modal.Footer>
               </Modal>
@@ -224,23 +224,25 @@ function FolderComponent() {
           <span className="sr-only">Loading...</span>
         </Spinner>
       ) : (
-        <div className='row p-4' >
+        <div className='row p-4 mt-4' >
 
           {
            folders.child_folders.map(folder => (
               <div className='col-md-2 col-sm-4 col-4' key={folder._id} >
                   <center>
-                    <div style={{ display: 'flex', justifyContent: 'center'}} >
+                      <div style={{ display: 'flex', justifyContent: 'center',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'5px'}} >
                         <Link to={`/folders/${folder._id}`} style={{ textDecoration: 'none' }}>
-                        <span style={{ fontSize: '48px', color: '#6b2a7d' }}>
-                          <FaFolderOpen  />
-                        </span>
-                          <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none' }}>{folder.name}</div>
-                      </Link>
-                        {userRole==="admin" && (
-                          <MdClose  style={{ fontSize: '23px', color: 'red',marginTop:'25px',marginLeft:'10px',cursor:'pointer' }} onClick={() => confirmDeleteFolder(folder._id)}/>
-                        )}
-                    </div>
+                          <span style={{ fontSize: '48px', color: '#6b2a7d' }}>
+                            <FaFolderOpen  />
+                          </span>
+                            <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none' }}>{folder.name}</div>
+                        </Link>
+                        <div style={{position:'absolute',right:'15px'}}>
+                          {userRole==="admin" && (
+                            <MdClose  style={{ fontSize: '23px', color: 'red',cursor:'pointer',float:'right'}} onClick={() => confirmDeleteFolder(folder._id)}/>
+                          )}
+                        </div>
+                      </div>
                     </center>
                   
               </div>
