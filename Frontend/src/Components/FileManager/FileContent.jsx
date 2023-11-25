@@ -54,10 +54,11 @@ function App() {
   }, [success]);
 
   const getFolder=async ()=>{
-    const response =await GET('/folder',setLoading);
+    setUploading(true)
+    const response =await GET('/folder',setUploading);
     if(response){
       setFolders(response.data);
-      console.log(response.data)
+      setUploading(false)
     }
  }
 
@@ -67,7 +68,6 @@ function App() {
   }, [success]);
 
   const handleCreateFolder = async() => {
-    // console.log(newFolderName)
     const response= await POST('/folder',{name:newFolderName},setLoading);
     if(response){
       setNewFolderName('');
@@ -94,8 +94,8 @@ function App() {
 
     
     const handleUpload = async () => {
-      // console.log(file);
-      const response = await POSTFILE('/file',file,setLoading);
+      setUploading(true)
+      const response = await POSTFILE('/file',file,setUploading);
       if(response){
         toast.success(response.data.message);
         setFile({
@@ -103,6 +103,7 @@ function App() {
           file:""
         })
       }
+      setUploading(false)
       setShowUploadModal(false);
       setSucess(success+1);
     };
@@ -139,9 +140,11 @@ function App() {
   };
   
   const handleDeleteFile = async (fileId) => {
-    const response= await DELETE('/file/'+fileId,setLoading);
+    setUploading(true)
+    const response= await DELETE('/file/'+fileId,setUploading);
     if(response){
       toast.success(response.data.meassage);
+      setUploading(false)
       setSucess(success+1);
     }
      
@@ -154,66 +157,70 @@ function App() {
         <div>
           <h1>Folders</h1>
         </div>
-        <div >
-            <button class="btn" onClick={() => setShowUploadModal(true)} style={{backgroundColor:'#6b2a7d', color:'white',padding: '5px',margin:'3px'}}>Upload a File</button>
-            <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Upload a File</Modal.Title>
+        {
+          userRole==="admin"?
+          <div >
+              <button class="btn" onClick={() => setShowUploadModal(true)} style={{backgroundColor:'#6b2a7d', color:'white',padding: '5px',margin:'3px'}}>Upload a File</button>
+              <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)}>
+              <Modal.Header closeButton>
+                  <Modal.Title>Upload a File</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <input
+                    type="text"
+                    value={file.name}
+                    onChange={(e) => setFile({...file,name:e.target.value})}
+                    placeholder="Enter folder name"
+                    style={{ width: '100%', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem' }}
+                  />
+                  <input
+                    type="file"
+                    onChange={(e) => setFile({...file,file:e.target.files[0]})}
+                    name='file'
+                    ref={fileInputRef}
+                    style={{ width: '100%', padding: '0.5rem', marginBottom: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
+                  />
+                  {uploading && <p style={{ color: '#27ae60' }}>Uploading...</p>}
+                </Modal.Body>
+                <Modal.Footer style={{ borderTop: 'none' }}>
+                  <Button variant="danger"  onClick={() => setShowUploadModal(false)}>
+                    Close
+                  </Button>
+                  <button variant="primary" className='btn' onClick={handleUpload} disabled={uploading} style={{ backgroundColor: '#6b2a7d' , color:'white', padding:'5px', borderRadius:'5px'}}>
+                    {uploading ? 'Uploading...' : 'Upload'}
+                  </button>
+                </Modal.Footer>
+              </Modal>
+            
+            
+              <button class="btn" onClick={() => setShowCreateModal(true)} style={{backgroundColor:'#6b2a7d', color:'white' ,padding: '5px',margin:'3px'}}>Create a Folder</button>
+              <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title style={{ fontSize: '2rem' }}>Create a Folder</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <input
                   type="text"
-                  value={file.name}
-                  onChange={(e) => setFile({...file,name:e.target.value})}
+                  value={newFolderName}
+                  onChange={(e) => setNewFolderName(e.target.value)}
                   placeholder="Enter folder name"
                   style={{ width: '100%', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem' }}
                 />
-                <input
-                  type="file"
-                  onChange={(e) => setFile({...file,file:e.target.files[0]})}
-                  name='file'
-                  ref={fileInputRef}
-                  style={{ width: '100%', padding: '0.5rem', marginBottom: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
-                />
-                {uploading && <p style={{ color: '#27ae60' }}>Uploading...</p>}
+                {creatingFolder && <p style={{ color: '#6b2a7d' }}>Creating folder...</p>}
               </Modal.Body>
               <Modal.Footer style={{ borderTop: 'none' }}>
-                <Button variant="danger"  onClick={() => setShowUploadModal(false)}>
+                <button style={{ backgroundColor: '#8B0000' , color:'white', padding:'6px', borderRadius:'5px', border:'none'}} onClick={() => setShowCreateModal(false)}>
                   Close
-                </Button>
-                <button variant="primary" className='btn' onClick={handleUpload} disabled={uploading} style={{ backgroundColor: '#6b2a7d' , color:'white', padding:'5px', borderRadius:'5px'}}>
-                  {uploading ? 'Uploading...' : 'Upload'}
+                </button>
+                <button style={{ backgroundColor: '#6b2a7d' , color:'white', padding:'5px', borderRadius:'5px'}} onClick={handleCreateFolder} disabled={uploading}>
+                {uploading ? 'Creating...' : 'Create'}
                 </button>
               </Modal.Footer>
             </Modal>
-          
-          
-            <button class="btn" onClick={() => setShowCreateModal(true)} style={{backgroundColor:'#6b2a7d', color:'white' ,padding: '5px',margin:'3px'}}>Create a Folder</button>
-            <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title style={{ fontSize: '2rem' }}>Create a Folder</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <input
-                type="text"
-                value={newFolderName}
-                onChange={(e) => setNewFolderName(e.target.value)}
-                placeholder="Enter folder name"
-                style={{ width: '100%', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem' }}
-              />
-              {creatingFolder && <p style={{ color: '#6b2a7d' }}>Creating folder...</p>}
-            </Modal.Body>
-            <Modal.Footer style={{ borderTop: 'none' }}>
-              <button style={{ backgroundColor: '#8B0000' , color:'white', padding:'6px', borderRadius:'5px', border:'none'}} onClick={() => setShowCreateModal(false)}>
-                Close
-              </button>
-              <button style={{ backgroundColor: '#6b2a7d' , color:'white', padding:'5px', borderRadius:'5px'}} onClick={handleCreateFolder} disabled={!newFolderName}>
-                Create Folder
-              </button>
-            </Modal.Footer>
-          </Modal>
-          
-        </div>
+            
+          </div>
+          :''
+        }
       </div>
       {loading ? (
         <Spinner animation="border" role="status">
@@ -256,7 +263,7 @@ function App() {
                   {userRole==="admin" && (
                     <button className="dropdown-item" onClick={() => handleDeleteFile(file._id)}>
                       <span role="img" aria-label="Delete" style={{ fontSize: '18px', marginRight: '5px' }}>🗑️</span>
-                      Delete
+                      {uploading?'Deleting':'Delete'}
                     </button>
                   )}
                   <button className="dropdown-item" onClick={() => handleDownloadFile(file)}>
