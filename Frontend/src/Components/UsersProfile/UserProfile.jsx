@@ -4,7 +4,7 @@ import { H6, Image } from '../../../src/AbstractElements';
 import { Email,Location } from '../../Constant';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GET, UPDATE } from '../../api/Axios'
+import { GET, PATCHFILE, POSTFILE, UPDATE } from '../../api/Axios'
 
 const UserProfile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,14 +16,17 @@ const UserProfile = () => {
   // State to hold form values
   const [user, setUser] = useState({
     name: '',
-    username: '',
     job_desgination: '',
     email: '',
-    address: '',
     phone: '',
+    street: '',
+    city: '',
+    state: '',
+    country: '',
     zip: '',
     role:''
   });
+  const [profile_image,setProfileImage]=useState(null);
 
   const fetchData=async()=>{
     const response= await GET('user/profile',setLoading);
@@ -50,15 +53,16 @@ const UserProfile = () => {
   };
 
 const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log(user);
-  const response= await UPDATE('user/profile',user,setLoading);
+    e.preventDefault();
+    setLoading(true);
+    const response= await PATCHFILE('/user/profile',{...user,profile_image:profile_image},setLoading);
 
-  if(response){
-    toast.success(response.data.message);
-    fetchData();
-  }
-  closeModal();
+    if(response){
+      toast.success(response.data.message);
+      fetchData();
+      setLoading(false);
+    }
+    closeModal();
 
 };
 
@@ -75,10 +79,15 @@ const handleSubmit = async (e) => {
           <CardHeader className='cardheader'></CardHeader>
           <div className='user-image'>
             <div className='avatar'>
-              <Image attrImage={{ className: 'step1', alt: '', src: `${require('../../assets/images/user/sample.png')}` }} />
+              {
+                user.profile_image?
+                <Image attrImage={{ className: 'step1', alt: '', src:`${user.profile_image.url}` }} />
+                :
+                <Image attrImage={{ className: 'step1', alt: '', src: `${require('../../assets/images/user/sample.png')}` }} />
+              }
             </div>
-            <div className='icon-wrapper step2'>
-              <i className='icofont icofont-pencil-alt-5' onClick={openModal}></i>
+            <div className='icon-wrapper step2' onClick={openModal}>
+              <i className='icofont icofont-pencil-alt-5' ></i>
             </div>
             <ProfileModal
               showModal={showModal}
@@ -86,6 +95,9 @@ const handleSubmit = async (e) => {
               handleSubmit={handleSubmit}
               user={user}
               setUser={setUser}
+              profile_image={profile_image}
+              setProfileImage={setProfileImage}
+              loading={loading}
             />
           </div>
               <div className='info'>
@@ -119,7 +131,7 @@ const handleSubmit = async (e) => {
                     </div>
                     {
                       userRole==="member"?
-                      <div className='desc mt-2'>{console.log(user.job_designation)||user.job_designation}</div>:
+                      <div className='desc mt-2'>{user.job_designation}</div>:
                       ''
                     }
                   </div>
@@ -133,7 +145,12 @@ const handleSubmit = async (e) => {
                           <i className='fa fa-location-arrow me-2'></i>
                           {Location}
                         </H6>
-                        <span>{user.address?user.address:'None'}</span>
+                        <span>
+                            {user.street!=""?user.street+",":''}
+                            {user.city!=""?user.city+",":''}
+                            {user.state!=""?user.state+",":''}
+                            {user.country!=""?user.country:''}
+                        </span>
                       </div>
                     </Col>
                     <Col md='6'>
@@ -155,8 +172,9 @@ const handleSubmit = async (e) => {
   );
 };
 
-const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser }) => {
+const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profile_image,setProfileImage,loading }) => {
   const userRole=localStorage.getItem('role');
+   console.log("edit model", user)
   return (
     <Modal isOpen={showModal} toggle={closeModal}>
       <ModalHeader toggle={closeModal}>Edit Profile</ModalHeader>
@@ -222,18 +240,44 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser }) =>
               </Col>
               <Col md={12}>
               <FormGroup>
-                <Label for='location'>Address</Label>
+                <Label for='location'>Street</Label>
                 <Input
                   type='text'
-                  name='address'
+                  name='street'
                   id='location'
-                  placeholder='Enter your Address'
-                  value={user.address}
-                  onChange={(e) => setUser({ ...user, address: e.target.value })}
+                  placeholder='Enter your Street Address'
+                  value={user.street}
+                  onChange={(e) => setUser({ ...user, street: e.target.value })}
                 />
               </FormGroup>
             </Col>
-            <Col md={12}>
+            <Col md={6}>
+              <FormGroup>
+                <Label for='location'>City</Label>
+                <Input
+                  type='text'
+                  name='city'
+                  id='location'
+                  placeholder='Enter your City'
+                  value={user.city}
+                  onChange={(e) => setUser({ ...user, city: e.target.value })}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label for='location'>State</Label>
+                <Input
+                  type='text'
+                  name='state'
+                  id='location'
+                  placeholder='Enter your State'
+                  value={user.state}
+                  onChange={(e) => setUser({ ...user, state: e.target.value })}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={6}>
               <FormGroup>
                 <Label for='zip'>Zip</Label>
                 <Input
@@ -246,15 +290,39 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser }) =>
                 />
               </FormGroup>
             </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label for='zip'>Country</Label>
+                <Input
+                  type='text'
+                  name='country'
+                  id='country'
+                  placeholder='Enter your country'
+                  value={user.country}
+                  onChange={(e) => setUser({ ...user, country: e.target.value })}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label for='zip'>Profile Image</Label>
+                <Input
+                  type='file'
+                  name='profile_image'
+                  placeholder='Enter your Profile Image'
+                  onChange={(e) => setProfileImage(e.target.files[0])}
+                />
+              </FormGroup>
+            </Col>
           </Row>
           <div>
           <ModalFooter>
-              <Button color='primary' type='submit'>
-                Save Changes
-              </Button>
-              <Button color='secondary' onClick={closeModal}>
+              <button className='btn' type='submit' disabled={loading}>
+                {loading?'Saving...':'Save Changes'}
+              </button>
+              <button className='btn' onClick={closeModal}>
                 Close
-              </Button>
+              </button>
           </ModalFooter>
           </div>
         </form>

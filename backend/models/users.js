@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-    username:{
-        type:String,
-        required:true
-    },
     name:{
         type:String,
         required:true
@@ -21,16 +17,32 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    address:{
+    street:{
         type:String,
-        default:null
+        default:""
+    },
+    city:{
+        type:String,
+        default:""
+    },
+    state:{
+        type:String,
+        default:""
     },
     zip:{
         type:String,
-        default:null
+        default:""
+    },
+    country:{
+        type:String,
+        default:""
     },
     job_designation:{
         type:String,
+        default:null
+    },
+    profile_image:{
+        type:Object,
         default:null
     },
     role:{

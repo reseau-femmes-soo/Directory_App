@@ -58,7 +58,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 //   next();
 // });
 
-app.use(cors({ origin: 'https://directory-gamma.vercel.app'}));
+// app.use(cors({ origin: 'https://directory-gamma.vercel.app',methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], }));
+app.use(cors());
 
 //Defining Port on which our page is load.
 const PORT = process.env.PORT || 5000;
@@ -87,13 +88,12 @@ app.get("/", (req, res) => {
 //   .catch((error) => console.log(error.message));
 
 
-  mongoose.connect(process.env.CONNECTION_URL , {useNewUrlParser: true,useUnifiedTopology: true}) 
- .then(
+mongoose.connect(process.env.CONNECTION_URL , {useNewUrlParser: true,useUnifiedTopology: true}) 
+.then(
   () => app.listen(PORT, console.log(`Server running on port: ${PORT}`))
- )
-  .catch((err) => {
-    console.log("Mongodb connection error", err);
-  });
+).catch((err) => {
+  console.log("Mongodb connection error", err);
+});
 
 
 

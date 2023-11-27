@@ -1,34 +1,25 @@
+
 export const Data = [
     {
-       title:"FirstName",
-       placeholder: "Enter your FirstName", 
+       title:"Full Name",
+       placeholder: "Enter your Name", 
        type:"text",
-       name :"firstName"
+       name :"name"
     },
-    {
-        title:"LastName",
-        placeholder: "Enter your LastName", 
-        type:"text",
-        name :"lastName"
-    },
+    
      {
-        title:"email",
+        title:"Email",
         placeholder: "Enter your email", 
         type:"email",
         name :"email"
      },
      {
-         title:"contact",
-         placeholder: "Enter your contact", 
+         title:"Phone",
+         placeholder: "Enter your phone", 
          type:"text",
-         name :"contact"
+         name :"phone"
      },
-     {
-        title:"Ssn",
-        placeholder: "Enter your Ssn", 
-        type:"text",
-        name :"ssn"
-     },
+     
      {
          title:"Street",
          placeholder: "Enter your street", 
@@ -55,26 +46,20 @@ export const Data = [
      },
      {
          title:"Country",
-         placeholder: "Enter your LastName", 
+         placeholder: "Enter your Country", 
          type:"text",
          name :"country"
      },
-      {
-         title:"image",
-         placeholder: "", 
-         type:"file",
-         name :"image"
-      },
-      {
-          title:"Company Logo",
-          placeholder: "", 
-          type:"file",
-          name :"companyLogo"
-      },
-      {
-        title:"Company Name",
-        placeholder: "Enter your Agency Name", 
+     {
+        title:"Job Designation",
+        placeholder: "Designation", 
         type:"text",
-        name :"companyName"
-    }
+        name :"job_designation"
+    },
+    {
+        title:"image",
+        placeholder: "", 
+        type:"file",
+        name :"profile_image"
+    },
 ]

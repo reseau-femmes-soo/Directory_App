@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
-import { MdClose, MdMoreVert } from 'react-icons/md';
+import { MdClose, MdMoreVert,MdDelete } from 'react-icons/md';
 import { useUser } from './../../Auth/UserContext';
 import { FaFileArchive, FaFile, FaFileImage } from 'react-icons/fa';
 import { FiFileText } from 'react-icons/fi';
@@ -74,19 +74,19 @@ function FolderComponent() {
     }
   };
 
-  const [selectedFolderId, setSelectedFolderId] = useState(null);
+  const [selected, setSelected] = useState({
+    id:'',
+    is_folder:''
+  });
   const [showDeleteFolderModal, setShowDeleteFolderModal] = useState(false);
 
   // ... // -/\- \\ ... (previous code) ... // -/\- \\ ...
-
-  const confirmDeleteFolder = async (folderId) => {
-    setLoading(true);
-    const response= await DELETE('/folder/'+folderId,setLoading);
-    if(response){
-      toast.success(response.data.meassage);
-      setSucess(success+1);
-    }
-  };
+  const confirm_delete=(id,is_folder)=>{
+    setSelected({
+      id:id,is_folder:is_folder
+    })
+    setShowDeleteFolderModal(true);
+  }
 
     
   const handleUpload = async () => {
@@ -136,14 +136,26 @@ function FolderComponent() {
     window.location.href = file.path.url;
   };
   
-  const handleDeleteFile = async (fileId) => {
-    setUploading(true);
-    const response= await DELETE('/file/'+fileId,setUploading);
-    if(response){
-      toast.success(response.data.meassage);
-      setSucess(success+1);
-      setUploading(false);
+  const handleDelete = async () => {
+    // console.log(selected)
+    if(selected.is_folder==='folder'){
+      setUploading(true)
+      const response= await DELETE('/folder/'+selected.id,setUploading);
+      if(response){
+        toast.success(response.data.meassage);
+        setSucess(success+1);
+        setUploading(false)
+      }
+    }else if(selected.is_folder==='file'){
+      setUploading(true)
+      const response= await DELETE('/file/'+selected.id,setUploading);
+      if(response){
+        toast.success(response.data.meassage);
+        setUploading(false)
+        setSucess(success+1);
+      }
     }
+    setShowDeleteFolderModal(false);
      
   };
   
@@ -228,7 +240,7 @@ function FolderComponent() {
 
           {
            folders.child_folders.map(folder => (
-              <div className='col-md-2 col-sm-4 col-4' key={folder._id} >
+              <div className='col-md-2 col-sm-4 col-4 mt-3' key={folder._id} >
                   <center>
                       <div style={{ display: 'flex', justifyContent: 'center',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'5px'}} >
                         <Link to={`/folders/${folder._id}`} style={{ textDecoration: 'none' }}>
@@ -237,9 +249,9 @@ function FolderComponent() {
                           </span>
                             <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none' }}>{folder.name}</div>
                         </Link>
-                        <div style={{position:'absolute',right:'15px'}}>
+                        <div style={{position:'absolute',right:'15px',top:'5px'}}>
                           {userRole==="admin" && (
-                            <MdClose  style={{ fontSize: '23px', color: 'red',cursor:'pointer',float:'right'}} onClick={() => confirmDeleteFolder(folder._id)}/>
+                            <MdDelete  style={{ fontSize: '23px', color: 'black',cursor:'pointer',float:'right'}} onClick={() => confirm_delete(folder._id,'folder')}/>
                           )}
                         </div>
                       </div>
@@ -251,17 +263,21 @@ function FolderComponent() {
           
           {Array.isArray(folders.files) && folders.files.map(file => (
         <div key={file._id} className='col-md-2 col-sm-4 col-4 mt-4'>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {getFileIcon(file)}
-              <div style={{ marginTop: '5px' }}>{file.name || file.fileName}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'5px',marginTop:'-8px'}}>
+              <div style={{paddingTop:'18px',paddingBottom:'5px'}}>
+                <div >
+                  {getFileIcon(file)}
+                </div>
+              <div style={{ marginTop: '7px' }}>{file.name || file.fileName}</div>
+              </div>
             </div>
-            <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
+            <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
               <div className={`dropdown ${showDropdown === file._id ? 'show' : ''}`}>
                <MdMoreVert onClick={() => setShowDropdown(showDropdown === file._id ? null : file._id)} id={`fileOptions${file._id}`} style={{fontSize:'25',marginTop:'-20px',cursor:'pointer'}}/>
                 
                 <div className={`dropdown-menu ${showDropdown === file._id ? 'show' : ''}`} aria-labelledby={`fileOptions${file._id}`}>
                   {userRole==="admin" && (
-                    <button className="dropdown-item" onClick={() => handleDeleteFile(file._id)} disabled={loading}>
+                    <button className="dropdown-item" onClick={() => confirm_delete(file._id,'file')} disabled={loading}>
                       <span role="img" aria-label="Delete" style={{ fontSize: '18px', marginRight: '5px' }}>🗑️</span>
                       {uploading?"Deleting...":"Delete"}
                     </button>
@@ -289,12 +305,12 @@ function FolderComponent() {
         <p style={{textAlign:'center'}}>You won't be able to revert this!</p>
       </Modal.Body>
       <Modal.Footer style={{display:'flex', justifyContent:'center'}}>
-      <button style={{ backgroundColor: '#6b2a7d' , color:'white', padding:'7px', borderRadius:'5px', border:'none'}} onClick={confirmDeleteFolder}>
-          Yes,Delete it!
+      <button className={'btn'} onClick={()=>handleDelete()} disabled={uploading}>
+          {uploading?'Deleting':'Yes, Delete it!'}
         </button>
-        <Button className="bg-dark" onClick={() => setShowDeleteFolderModal(false)}>
+        <button className={'btn'} disabled={uploading} onClick={() => setShowDeleteFolderModal(false)}>
           Cancel
-        </Button>
+        </button>
       </Modal.Footer>
     </Modal>
     </div>

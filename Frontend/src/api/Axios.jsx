@@ -90,3 +90,35 @@ export const DELETE = async (url,loading) => {
     loading(false);
   }
 };
+
+
+export const PATCHFILE = async (url,data,loading) => {
+  try {
+    console.log(url)
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Token not found in local storage');
+    }
+
+    console.log('Token:', token);
+
+    const response = await axios.patch(
+      process.env.REACT_APP_BACKEND_URL + url,
+      data,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Adjust based on your data type
+          'authorization': `${token}`,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    if (error.response && error.response.data.message) {
+      error.message = error.response.data.message;
+    }
+    toast.error(error.message);
+    loading(false);
+  }
+};

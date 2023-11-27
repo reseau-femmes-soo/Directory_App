@@ -7,7 +7,7 @@ import BasicFormControlClass from './BasicFormControl';
 const BaseInput = () => {
   return (
     <Fragment>
-      <Breadcrumbs mainTitle='Dealerships' parent='Add Dealer' title='Add Dealer' subParent='Dealerships' />
+      <Breadcrumbs mainTitle='Members' parent='Add Member' title='Add Member' subParent='Members' />
       <Container fluid={true}>
         <Row>
           <Col sm='12'>
