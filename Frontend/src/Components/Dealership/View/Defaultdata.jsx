@@ -11,7 +11,7 @@ const renderProfilePhoto = (photoName) => (
   
 export const tableColumns = [
     {
-        name: 'Name',
+        name: 'Nom',
         selector: (row) => (
             <div className="d-flex align-items-center">
                 <span>{row.name}</span>
@@ -21,25 +21,25 @@ export const tableColumns = [
         center: false,
     },
     {
-        name: 'Email',
+        name: 'E-mail',
         selector: row => row['email'],
         sortable: true,
         center: true,
     },
     {
-        name: 'Job Designation',
+        name: `Désignation d'emploi`,
         selector: row => `${row.job_designation?row.job_designation:"None"}`,
         sortable: true,
         center: true,
     },
     {
-        name: 'Phone',
+        name: 'Téléphone',
         selector: row => `${row.phone}`,
         sortable: true,
         center: true,
     },
     {
-        name: 'Location',
+        name: 'Emplacement',
         selector: row => `${row.address?row.address:'None'}`,
         sortable: true,
         center: true,

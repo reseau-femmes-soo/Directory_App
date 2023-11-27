@@ -54,14 +54,14 @@ const Signin = ({ selected }) => {
                   <div className="text-center mb-1">
                     <img src={image} alt="Logo" height={80}/>
                   </div>
-                  <H4>{selected === "simpleLogin" ? "" : "Login"}</H4>
-                  <P>{"Enter your email & password to login"}</P>
+                  <H4>{selected === "simpleLogin" ? "" : "Connexion"}</H4>
+                  <P>{"Saisissez votre adresse e-mail et votre mot de passe pour vous connecter"}</P>
                   <FormGroup>
-                    <Label className="col-form-label">{EmailAddress}</Label>
-                    <Input className="form-control" type="email" onChange={(e) => setUser({...user,email:e.target.value})} value={user.email} placeholder="Enter your email" required />
+                    <Label className="col-form-label">{'Adresse E-mail'}</Label>
+                    <Input className="form-control" type="email" onChange={(e) => setUser({...user,email:e.target.value})} value={user.email} placeholder="Saisissez votre adresse e-mail" required />
                   </FormGroup>
                   <FormGroup className="position-relative">
-                    <Label className="col-form-label">{Password}</Label>
+                    <Label className="col-form-label">{'Mot de passe'}</Label>
                     <div className="position-relative">
                       <Input className="form-control" type={togglePassword ? "text" : "password"} onChange={(e) => setUser({...user,password:e.target.value})} value={user.password} placeholder="Enter your password" required />
                       
@@ -73,10 +73,10 @@ const Signin = ({ selected }) => {
                   <div className="position-relative form-group mb-0">
                     
                     <a className="forgot_link" href="forget">
-                      {ForgotPassword}
+                      {'Mot de passe oublié'}
                     </a>
                     <button className="btn w-100"  disabled={loading}>
-                      {loading ? 'Logging in...' : SignIn}
+                      {loading ? 'Connexion...' : 'Connexion'}
                     </button>
                   </div>
                 </Form>

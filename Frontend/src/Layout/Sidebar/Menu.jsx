@@ -57,8 +57,8 @@ export const MENUITEMS= ()=> {
           menutitle: "General",
           menucontent: "Dashboards,Widgets",
           Items: [
-               { path: '/Home', icon: "icofont-home", title: "Home", type: "link" },
-               { path: '/profile', icon: "icofont-ui-user", title: "Profile", type: "link" },
+               { path: '/Home', icon: "icofont-home", title: "Accueil", type: "link" },
+               { path: '/profile', icon: "icofont-ui-user", title: "Profil", type: "link" },
               //  { path: '/password', icon: "icofont-settings-alt", title: "Setting", type: "link" },
           ],
         },
@@ -68,8 +68,8 @@ export const MENUITEMS= ()=> {
           menucontent: "Ready to use Apps",
           
           Items:[
-            { path: 'members', icon: "icofont icofont-users-alt-1", title: "Members", type: "link" },
-            { path: '/', icon: "icofont-ui-user", title: "Logout", type: "link" },
+            { path: 'members', icon: "icofont icofont-users-alt-1", title: "Membres", type: "link" },
+            { path: '/', icon: "icofont-ui-user", title: "Déconnexion", type: "link" },
           ],
         },
       ]
@@ -79,8 +79,8 @@ export const MENUITEMS= ()=> {
         menutitle: "General",
         menucontent: "Dashboards,Widgets",
         Items: [
-             { path: '/Home', icon: "icofont-home", title: "Home", type: "link" },
-             { path: '/profile', icon: "icofont-ui-user", title: "Profile", type: "link" },
+             { path: '/Home', icon: "icofont-home", title: "Accueil", type: "link" },
+             { path: '/profile', icon: "icofont-ui-user", title: "Profil", type: "link" },
             //  { path: '/password', icon: "icofont-settings-alt", title: "Setting", type: "link" },
         ],
       },
@@ -90,7 +90,7 @@ export const MENUITEMS= ()=> {
         menucontent: "Ready to use Apps",
         
         Items:[
-          { path: '/', icon: "icofont-ui-user", title: "Logout", type: "link" },
+          { path: '/', icon: "icofont-ui-user", title: "Déconnexion", type: "link" },
         ],
       },
     ]

@@ -13,7 +13,7 @@ const HeaderCard = ({ title, span1, span2, mainClasses,link,link_text }) => {
         {span2 ? <span>{span2}</span> : ''}
         {
           link?
-          <Link to="/add_member" className='btn' style={{width:'150px',float:'right'}}>Add member</Link>
+          <Link to="/add_member" className='btn' style={{width:'250px',float:'right'}}>{link_text}</Link>
           :''
         }
       </CardHeader>

@@ -1,0 +1,25 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn:hover{
+    color:#6b2a7d !important;
+    background-color:white !important;
+    box-shadow: 1px 1px 20px 0 rgb(106, 41, 124);
+}
+.btn{
+    border-radius:100px;
+    background-color:#6b2a7d;
+    color:white;
+    margin: 3px;
+}
+.forgot_link{
+    text-decoration: none;
+    float: right;
+    color:rgb(43, 43, 43);
+    margin-bottom: 20px;
+}
+.form-control:focus{
+    box-shadow:none !important;
+    border-color: none !important;
+}

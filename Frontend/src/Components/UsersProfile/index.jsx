@@ -7,7 +7,7 @@ import UserProfile from "./UserProfile";
 const UsersProfileContain = () => {
   return (
     <Fragment>
-      <Breadcrumbs mainTitle="User Profile" parent="Users" title="User Profile" />
+      <Breadcrumbs mainTitle="Profil de l'utilisateur" parent="Utilisateurs" title="Profil de l'utilisateur" />
       <Container fluid={true}>
         <div className="user-profile">
           <Row>

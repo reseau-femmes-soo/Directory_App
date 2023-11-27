@@ -8,12 +8,12 @@ const DataTables = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs parent="Members" mainTitle="Members Record" />
+      <Breadcrumbs parent="Membres" mainTitle="Dossier des membres" />
       <Container fluid={true}>
         <Row>
           <Col sm="12">
             <Card>
-              <HeaderCard title="Réseau-femmes Members" link="add_member" link_text={"Add Member"}/>
+              <HeaderCard title="Réseau-femmes Members" link="add_member" link_text={"Ajouter un membre"}/>
                
               <CardBody>
                 <DataTableComponent />

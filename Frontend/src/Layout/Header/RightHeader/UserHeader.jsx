@@ -42,15 +42,15 @@ const UserHeader = () => {
           
         />
         <div className="media-body">
-          <span>Welcome</span>
+          <span>Bienvenue</span>
           <P attrPara={{ className: "mb-0 font-roboto" }}>
             {userRole ==="admin" ? (
               <>
-                {Admin}
+                {'Administrateur'}
               </>
             ) : (
               <>
-                {Member}
+                {'Membre'}
               </>
             )}
           </P>

@@ -109,7 +109,7 @@ const handleSubmit = async (e) => {
                       <div className='ttl-info text-start ttl-sm-mb-0'>
                         <H6>
                           <i className='fa fa-phone me-2'></i>
-                          Phone
+                          Téléphone
                         </H6>
                         <span>{user.phone}</span>
                       </div>
@@ -117,7 +117,7 @@ const handleSubmit = async (e) => {
                     <Col md='7'>
                       <div className='ttl-info text-start'>
                         <H6>
-                          <i className='fa fa-envelope me-2'></i> {Email}
+                          <i className='fa fa-envelope me-2'></i> {'E-mail'}
                         </H6>
                         <span>{user.email}</span>
                       </div>
@@ -143,7 +143,7 @@ const handleSubmit = async (e) => {
                       <div className='ttl-info text-start ttl-sm-mb-0'>
                         <H6>
                           <i className='fa fa-location-arrow me-2'></i>
-                          {Location}
+                          {'Emplacement'}
                         </H6>
                         <span>
                             {user.street!=""?user.street+",":''}
@@ -157,7 +157,7 @@ const handleSubmit = async (e) => {
                       <div className='ttl-info text-start ttl-xs-mt'>
                         <H6>
                           <i className='fa fa-phone me-2'></i>
-                          {'Zip'}
+                          {'Code postal'}
                         </H6>
                         <span>{user.zip?user.zip:'None'}</span>
                       </div>

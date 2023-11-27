@@ -173,22 +173,22 @@ function App() {
     <div className="container mt-4" >
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
-          <h3>Folders</h3>
+          <h3>Dossiers</h3>
         </div>
         {
           userRole==="admin"?
           <div >
-              <button class="btn" onClick={() => setShowUploadModal(true)} style={{width:'200px'}}>Upload a File</button>
+              <button class="btn" onClick={() => setShowUploadModal(true)} >Télécharger un fichier</button>
               <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)}>
               <Modal.Header closeButton>
-                  <Modal.Title>Upload a File</Modal.Title>
+                  <Modal.Title>Télécharger un fichier</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <input
                     type="text"
                     value={file.name}
                     onChange={(e) => setFile({...file,name:e.target.value})}
-                    placeholder="Enter folder name"
+                    placeholder="Entrez le nom du fichier"
                     style={{ width: '100%', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem' }}
                     className='form-control'
                   />
@@ -199,40 +199,41 @@ function App() {
                     ref={fileInputRef}
                     className='form-control mt-3'
                   />
-                  {uploading && <p style={{ color: '#27ae60' }}>Uploading...</p>}
+                  {uploading && <p style={{ color: '#27ae60' }}>Téléchargement...</p>}
                 </Modal.Body>
                 <Modal.Footer style={{ borderTop: 'none' }}>
                   <button  className='btn'  onClick={() => setShowUploadModal(false)}>
-                    Close
+                  Fermer
                   </button>
                   <button variant="primary" className='btn' onClick={handleUpload} disabled={uploading} >
-                    {uploading ? 'Uploading...' : 'Upload'}
+                    {uploading ? 'Téléchargement...' : 'Télécharger'}
                   </button>
                 </Modal.Footer>
               </Modal>
             
             
-              <button class="btn" onClick={() => setShowCreateModal(true)} style={{width:'200px'}}>Create a Folder</button>
+              <button class="btn" onClick={() => setShowCreateModal(true)} style={{width:'200px'}}>Nouveau dossier</button>
               <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
               <Modal.Header closeButton>
-                <Modal.Title style={{ fontSize: '2rem' }}>Create a Folder</Modal.Title>
+                <Modal.Title style={{ fontSize: '2rem' }}>Nouveau dossier</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <input
                   type="text"
                   value={newFolderName}
                   onChange={(e) => setNewFolderName(e.target.value)}
-                  placeholder="Enter folder name"
+                  placeholder="Entrez le nom du dossier"
                   className='form-control'
                 />
-                {creatingFolder && <p style={{ color: '#6b2a7d' }}>Creating folder...</p>}
+                {creatingFolder && <p style={{ color: '#6b2a7d' }}>
+                  Création d'un dossier...</p>}
               </Modal.Body>
               <Modal.Footer style={{ borderTop: 'none' }}>
                 <button className="btn" onClick={() => setShowCreateModal(false)}>
                   Close
                 </button>
                 <button className="btn" onClick={handleCreateFolder} disabled={uploading}>
-                {uploading ? 'Creating...' : 'Create'}
+                {uploading ? 'Création...' : 'Créer'}
                 </button>
               </Modal.Footer>
             </Modal>
@@ -288,12 +289,12 @@ function App() {
                   {userRole==="admin" && (
                     <button className="dropdown-item" onClick={() => confirm_delete(file._id,'file')}>
                       <span role="img" aria-label="Delete" style={{ fontSize: '18px', marginRight: '5px' }}>🗑️</span>
-                      {uploading?'Deleting':'Delete'}
+                      {uploading?'Suppression':'Supprimer'}
                     </button>
                   )}
                   <button className="dropdown-item" onClick={() => handleDownloadFile(file)}>
                     <span role="img" aria-label="Download" style={{ fontSize: '18px', marginRight: '5px' }}>📥</span>
-                    Download
+                    Télécharger
                   </button>
                 </div>
               </div>
@@ -308,15 +309,15 @@ function App() {
       <RiErrorWarningLine className="error-icon" style={{ color: 'orange', fontSize: '80px' }} />
       </Modal.Header>
       <Modal.Body>
-        <h5 style={{textAlign:'center', marginTop:'-20px'}}>Are you Sure to Delete?</h5>
-        <p style={{textAlign:'center'}}>You won't be able to revert this!</p>
+        <h5 style={{textAlign:'center', marginTop:'-20px'}}>Êtes-vous sûr de vouloir supprimer?</h5>
+        <p style={{textAlign:'center'}}>Vous ne pourrez pas revenir en arrière!</p>
       </Modal.Body>
       <Modal.Footer style={{display:'flex', justifyContent:'center'}}>
       <button className={'btn'} onClick={()=>handleDelete()} disabled={uploading}>
-          {uploading?'Deleting':'Yes, Delete it!'}
+          {uploading?'Suppression':'Oui, supprimez-le !'}
         </button>
         <button className={'btn'} disabled={uploading} onClick={() => setShowDeleteFolderModal(false)}>
-          Cancel
+        Annuler
         </button>
       </Modal.Footer>
     </Modal>
