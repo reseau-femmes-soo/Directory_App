@@ -258,7 +258,7 @@ function App() {
                         <span style={{ fontSize: '48px', color: '#6b2a7d' }}>
                           <FaFolderOpen  />
                         </span>
-                          <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none' }}>{folder.name}</div>
+                          <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none', whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100px' }}>{folder.name}</div>
                       </Link>
                       <div style={{position:'absolute',right:'15px',top:'5px'}}>
                         {userRole==="admin" && (
@@ -278,7 +278,7 @@ function App() {
                 <div >
                   {getFileIcon(file)}
                 </div>
-              <div style={{ marginTop: '7px' }}>{file.name || file.fileName}</div>
+              <div style={{ marginTop: '7px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100px' }}>{file.name || file.fileName}</div>
               </div>
             </div>
             <div style={{ position: 'absolute', top: '10px', right: '10px' }}>

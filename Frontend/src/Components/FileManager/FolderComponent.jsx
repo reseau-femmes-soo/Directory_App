@@ -18,6 +18,7 @@ import {AiFillFileWord} from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import {DELETE, GET, POST, POSTFILE} from '../../api/Axios'
 import { toast } from 'react-toastify';
+import { Breadcrumbs } from '../../AbstractElements';
 
 function FolderComponent() {
   const { folderId, } = useParams();
@@ -161,7 +162,9 @@ function FolderComponent() {
   
   
   return (
-    <div className="container" style={{marginTop:'100px',backgroundColor:'#ffffff',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'10px' }}>
+    <>
+    <Breadcrumbs parent='Contenu' title='Gestionnaire de fichiers' mainTitle='Gestionnaire de fichiers' />
+    <div className="container" style={{backgroundColor:'#ffffff',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'10px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between'}} className='mt-4'>
         <div>
           <h3>Contenu </h3>
@@ -247,7 +250,7 @@ function FolderComponent() {
                           <span style={{ fontSize: '48px', color: '#6b2a7d' }}>
                             <FaFolderOpen  />
                           </span>
-                            <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none' }}>{folder.name}</div>
+                            <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100px' }}>{folder.name}</div>
                         </Link>
                         <div style={{position:'absolute',right:'15px',top:'5px'}}>
                           {userRole==="admin" && (
@@ -268,7 +271,7 @@ function FolderComponent() {
                 <div >
                   {getFileIcon(file)}
                 </div>
-              <div style={{ marginTop: '7px' }}>{file.name || file.fileName}</div>
+              <div style={{ marginTop: '7px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100px' }}>{file.name || file.fileName}</div>
               </div>
             </div>
             <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
@@ -314,6 +317,7 @@ function FolderComponent() {
       </Modal.Footer>
     </Modal>
     </div>
+  </>
   );
 }
 

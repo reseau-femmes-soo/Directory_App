@@ -6,6 +6,7 @@ import Loader from "../Layout/Loader";
 import Register from '../Auth/Register';
 import Signin from "../Auth/Signin";
 import Forget from "../Auth/Forget";
+import ResetPassword from "../Auth/ResetPassword";
 
 import Home from '../Components/Home'
 
@@ -30,6 +31,7 @@ const Routers = () => {
         <Route  path={'/'} element={<Signin />} />
           <Route  path={'/login'} element={<Signin />} />
           <Route  path={'/forget'} element={<Forget />} />
+          <Route  path={'/reset_password/:token'} element={<ResetPassword />} />
           <Route  path={'/register'} element={<Register />} />
          
           <Fragment >

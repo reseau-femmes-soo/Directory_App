@@ -76,7 +76,7 @@ const Signin = ({ selected }) => {
                       {'Mot de passe oublié'}
                     </a>
                     <button className="btn w-100"  disabled={loading}>
-                      {loading ? 'Connexion...' : 'Connexion'}
+                      {loading ? 'Connectez-vous...' : 'Se connecter'}
                     </button>
                   </div>
                 </Form>

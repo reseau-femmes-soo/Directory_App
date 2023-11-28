@@ -2,7 +2,7 @@
 
 // export const MENUITEMS = [
 //   {
-//     menutitle: "General",
+//     menutitle: "GÉNÉRAL",
 //     menucontent: "Dashboards,Widgets",
 //     Items: [
 //          { path: '/Home', icon: "icofont-home", title: "Home", type: "link" },
@@ -27,7 +27,7 @@
 
 // export const MEMBERMENUITEMS = [
 //   {
-//     menutitle: "General",
+//     menutitle: "GÉNÉRAL",
 //     menucontent: "Dashboards,Widgets",
 //     Items: [
 //          { path: '/Home', icon: "icofont-home", title: "Home", type: "link" },
@@ -54,7 +54,7 @@ export const MENUITEMS= ()=> {
   if(userRole==="admin"){
     return [
         {
-          menutitle: "General",
+          menutitle: "GÉNÉRAL",
           menucontent: "Dashboards,Widgets",
           Items: [
                { path: '/Home', icon: "icofont-home", title: "Accueil", type: "link" },
@@ -76,7 +76,7 @@ export const MENUITEMS= ()=> {
   }
     return [
       {
-        menutitle: "General",
+        menutitle: "GÉNÉRAL",
         menucontent: "Dashboards,Widgets",
         Items: [
              { path: '/Home', icon: "icofont-home", title: "Accueil", type: "link" },

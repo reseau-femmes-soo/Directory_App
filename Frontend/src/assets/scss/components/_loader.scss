@@ -24,7 +24,7 @@
       content: "";
       width: 4em;
       height: 4em;
-      background: var(--theme-default);
+      background: #6b2a7d;
       border-radius: 50%;
       position: absolute;
       transform: scale(0.5);
@@ -34,7 +34,7 @@
     span {
       width: 2em;
       height: 2em;
-      background: var(--theme-secondary);
+      background: #6b2a7d;
       border-radius: 50%;
       margin-right: 2em;
       position: relative;
@@ -45,7 +45,7 @@
         content: "";
         width: 2em;
         height: 2em;
-        background: var(--theme-default);
+        background: #6b2a7d;
         border-radius: 50%;
         position: absolute;
         left: 3em;
@@ -57,7 +57,7 @@
         content: "";
         width: 2em;
         height: 2em;
-        background: $info-color;
+        background: #6b2a7d;
         border-radius: 50%;
         position: absolute;
         right: 3em;
@@ -70,12 +70,12 @@
   @keyframes grow {
     0% {
       transform: scale(0.5);
-      background: $info-color;
+      background: #6b2a7d;
     }
 
     50% {
       transform: scale(1);
-      background: var(--theme-secondary);
+      background: #6b2a7d;
     }
   }
 
@@ -128,7 +128,7 @@
       position: absolute;
       content: "";
       height: 1px;
-      background: linear-gradient(to right, var(--theme-secondary), var(--theme-default), $info-color);
+      background: linear-gradient(to right, #6b2a7d, #6b2a7d, #6b2a7d);
       color: #fff;
       top: 2.75em;
       left: 0.75em;
@@ -158,7 +158,7 @@
   }
 
   .loader-1 {
-    border: 0.2em dotted var(--theme-default);
+    border: 0.2em dotted #6b2a7d;
     border-radius: 50%;
     animation: 1s loader-01 linear infinite;
   }
@@ -175,8 +175,8 @@
 
   .loader-2 {
     border: 0.2em solid transparent;
-    border-left-color: var(--theme-secondary);
-    border-right-color: var(--theme-secondary);
+    border-left-color: #6b2a7d;
+    border-right-color: #6b2a7d;
     border-radius: 50%;
     animation: 1s loader-02 linear infinite;
   }
@@ -192,7 +192,7 @@
   }
 
   .loader-3 {
-    border: 0.2em solid $info-color;
+    border: 0.2em solid #6b2a7d;
     border-bottom-color: transparent;
     border-radius: 50%;
     animation: 1s loader-03 linear infinite;
@@ -210,7 +210,7 @@
   }
 
   .loader-4 {
-    border: 1px solid $info-color;
+    border: 1px solid #6b2a7d;
     border-radius: 50%;
     animation: 1s loader-04 linear infinite;
     position: relative;
@@ -223,7 +223,7 @@
       position: absolute;
       top: -0.2em;
       left: 50%;
-      border: 0.2em solid $info-color;
+      border: 0.2em solid #6b2a7d;
       border-radius: 50%;
     }
   }
@@ -299,7 +299,7 @@
     &:before,
     &:after {
       content: "";
-      border: 0.2em solid var(--theme-default);
+      border: 0.2em solid #6b2a7d;
       border-radius: 50%;
       width: inherit;
       height: inherit;
@@ -344,7 +344,7 @@
       width: inherit;
       height: inherit;
       border-radius: 50%;
-      background-color: var(--theme-secondary);
+      background-color: #6b2a7d;
       opacity: 0.6;
       position: absolute;
       top: 0;
@@ -369,7 +369,7 @@
   }
 
   .loader-9 {
-    background-color: $info-color;
+    background-color: #6b2a7d;
     border-radius: 50%;
     animation: loader-09 1s infinite ease-in-out;
   }
@@ -394,7 +394,7 @@
       content: "";
       width: 0;
       height: 0;
-      border: 0.5em solid $info-color;
+      border: 0.5em solid #6b2a7d;
       display: block;
       position: absolute;
       border-radius: 100%;
@@ -495,7 +495,7 @@
   }
 
   .loader-13 {
-    color: var(--theme-default);
+    color: #6b2a7d;
     position: relative;
     transform: translateZ(0);
     animation-delay: -0.16s;
@@ -535,7 +535,7 @@
 
   .loader-14 {
     border-radius: 50%;
-    box-shadow: 0 1em 0 -0.2em var(--theme-secondary);
+    box-shadow: 0 1em 0 -0.2em #6b2a7d;
     position: relative;
     animation: loader-14 0.8s ease-in-out alternate infinite;
     animation-delay: 0.32s;
@@ -565,16 +565,16 @@
 
   @keyframes loader-14 {
     0% {
-      box-shadow: 0 2em 0 -0.2em var(--theme-secondary);
+      box-shadow: 0 2em 0 -0.2em #6b2a7d;
     }
 
     100% {
-      box-shadow: 0 1em 0 -0.2em var(--theme-secondary);
+      box-shadow: 0 1em 0 -0.2em #6b2a7d;
     }
   }
 
   .loader-15 {
-    background: $info-color;
+    background: #6b2a7d;
     position: relative;
     animation: loader-15 1s ease-in-out infinite;
     animation-delay: 0.4s;
@@ -606,11 +606,11 @@
   @keyframes loader-15 {
     0%,
     100% {
-      box-shadow: 0 0 0 $info-color, 0 0 0 $info-color;
+      box-shadow: 0 0 0 #6b2a7d, 0 0 0 #6b2a7d;
     }
 
     50% {
-      box-shadow: 0 -0.25em 0 $info-color, 0 0.25em 0 $info-color;
+      box-shadow: 0 -0.25em 0 #6b2a7d, 0 0.25em 0 #6b2a7d;
     }
   }
 
@@ -665,35 +665,35 @@
   @keyframes spin {
     0%,
     100% {
-      box-shadow: 0.2em 0px 0 0px $info-color;
+      box-shadow: 0.2em 0px 0 0px #6b2a7d;
     }
 
     12% {
-      box-shadow: 0.2em 0.2em 0 0 $info-color;
+      box-shadow: 0.2em 0.2em 0 0 #6b2a7d;
     }
 
     25% {
-      box-shadow: 0 0.2em 0 0px $info-color;
+      box-shadow: 0 0.2em 0 0px #6b2a7d;
     }
 
     37% {
-      box-shadow: -0.2em 0.2em 0 0 $info-color;
+      box-shadow: -0.2em 0.2em 0 0 #6b2a7d;
     }
 
     50% {
-      box-shadow: -0.2em 0 0 0 $info-color;
+      box-shadow: -0.2em 0 0 0 #6b2a7d;
     }
 
     62% {
-      box-shadow: -0.2em -0.2em 0 0 $info-color;
+      box-shadow: -0.2em -0.2em 0 0 #6b2a7d;
     }
 
     75% {
-      box-shadow: 0px -0.2em 0 0 $info-color;
+      box-shadow: 0px -0.2em 0 0 #6b2a7d;
     }
 
     87% {
-      box-shadow: 0.2em -0.2em 0 0 $info-color;
+      box-shadow: 0.2em -0.2em 0 0 #6b2a7d;
     }
   }
 
@@ -781,7 +781,7 @@
   }
 
   .loader-19 {
-    border-top: 0.2em solid var(--theme-default);
+    border-top: 0.2em solid #6b2a7d;
     border-right: 0.2em solid transparent;
     animation: loader-19 1s linear infinite;
     border-radius: 100%;
@@ -796,7 +796,7 @@
 
   .loader-20 {
     background-color: transparent;
-    box-shadow: inset 0px 0px 0px 0.1em var(--theme-secondary);
+    box-shadow: inset 0px 0px 0px 0.1em #6b2a7d;
     border-radius: 50%;
     position: relative;
 
@@ -804,7 +804,7 @@
     &:before {
       position: absolute;
       content: "";
-      background-color: var(--theme-secondary);
+      background-color: #6b2a7d;
       top: 24px;
       left: 24px;
       height: 0.1em;
@@ -847,7 +847,7 @@
       left: 10%;
       bottom: 10%;
       border-radius: 100% 100% 100% 0;
-      box-shadow: 0px 0px 0px 0.1em $info-color;
+      box-shadow: 0px 0px 0px 0.1em #6b2a7d;
       animation: loader-21 1s linear infinite;
       transform: rotate(-46deg);
     }
@@ -878,7 +878,7 @@
   }
 
   .loader-22 {
-    border: 0.1em $info-color solid;
+    border: 0.1em #6b2a7d solid;
     border-radius: 100%;
     position: relative;
     overflow: hidden;
@@ -888,7 +888,7 @@
     &:before {
       position: absolute;
       content: "";
-      background-color: $info-color;
+      background-color: #6b2a7d;
     }
 
     &:after {
@@ -992,7 +992,7 @@
   }
 
   .loader-25 {
-    border: 0.1em var(--theme-default) solid;
+    border: 0.1em #6b2a7d solid;
     position: relative;
     animation: loader-25-1 5s linear infinite;
 
@@ -1001,7 +1001,7 @@
       height: 0.2em;
       position: absolute;
       content: "";
-      background-color: var(--theme-default);
+      background-color: #6b2a7d;
       bottom: calc(100% + 0.2em);
       left: -0.4em;
       animation: loader-25-2 1s ease-in-out infinite;
@@ -1010,11 +1010,11 @@
 
   @keyframes loader-25-1 {
     0% {
-      box-shadow: inset 0 0 0 0 var(--theme-default);
+      box-shadow: inset 0 0 0 0 #6b2a7d;
     }
 
     100% {
-      box-shadow: inset 0 -1em 0 0 var(--theme-default);
+      box-shadow: inset 0 -1em 0 0 #6b2a7d;
     }
   }
 
@@ -1043,8 +1043,8 @@
   .loader-26 {
     width: 0.5em;
     height: 0.5em;
-    background-color: var(--theme-secondary);
-    box-shadow: 1em 0px 0px var(--theme-secondary);
+    background-color: #6b2a7d;
+    box-shadow: 1em 0px 0px #6b2a7d;
     border-radius: 50%;
     animation: loader-26 1s ease-in-out infinite alternate;
   }
@@ -1063,7 +1063,7 @@
 
   .loader-29 {
     border-radius: 50%;
-    box-shadow: inset 0 0 0 0.1em $info-color, -0.5em -0.5em 0 -0.4em $info-color, 0 -0.7em 0 -0.4em $info-color, 0.5em -0.5em 0 -0.4em $info-color, -0.5em 0.5em 0 -0.4em $info-color, 0 0.7em 0 -0.4em $info-color, 0.5em 0.5em 0 -0.4em $info-color, -0.7em 0 0 -0.4em $info-color, 0.7em 0 0 -0.4em $info-color;
+    box-shadow: inset 0 0 0 0.1em #6b2a7d, -0.5em -0.5em 0 -0.4em #6b2a7d, 0 -0.7em 0 -0.4em #6b2a7d, 0.5em -0.5em 0 -0.4em #6b2a7d, -0.5em 0.5em 0 -0.4em #6b2a7d, 0 0.7em 0 -0.4em #6b2a7d, 0.5em 0.5em 0 -0.4em #6b2a7d, -0.7em 0 0 -0.4em #6b2a7d, 0.7em 0 0 -0.4em #6b2a7d;
     animation: 5s loader-29 linear infinite;
   }
 
@@ -1079,8 +1079,8 @@
 
   .loader-30 {
     border: 0.2em solid transparent;
-    border-top-color: $info-color;
-    border-bottom-color: $info-color;
+    border-top-color: #6b2a7d;
+    border-bottom-color: #6b2a7d;
     border-radius: 50%;
     position: relative;
     animation: 1s loader-30 linear infinite;
@@ -1093,7 +1093,7 @@
       height: 0;
       position: absolute;
       border: 0.2em solid transparent;
-      border-bottom-color: $info-color;
+      border-bottom-color: #6b2a7d;
     }
 
     &:before {
@@ -1211,7 +1211,7 @@
       height: 0.4em;
       width: 0.4em;
       top: 0;
-      background-color: var(--theme-default);
+      background-color: #6b2a7d;
       border-radius: 50%;
     }
 
@@ -1268,7 +1268,7 @@
 
     &:before {
       border-radius: 50%;
-      background-color: var(--theme-secondary);
+      background-color: #6b2a7d;
       animation: loader-35 3s cubic-bezier(0.77, 0, 0.175, 1) infinite;
       content: "";
       width: inherit;
@@ -1302,7 +1302,7 @@
   }
 
   .loader-37 {
-    border-right: 0.1em solid $info-color;
+    border-right: 0.1em solid #6b2a7d;
     border-radius: 100%;
     animation: loader-37 800ms linear infinite;
 
@@ -1315,7 +1315,7 @@
       position: absolute;
       top: calc(50% - 0.4em);
       left: calc(50% - 0.4em);
-      border-left: 0.08em solid $info-color;
+      border-left: 0.08em solid #6b2a7d;
       border-radius: 100%;
       animation: loader-37 400ms linear infinite reverse;
     }
@@ -1326,7 +1326,7 @@
       top: calc(50% - 0.3em);
       left: calc(50% - 0.3em);
       border: 0;
-      border-right: 0.05em solid $info-color;
+      border-right: 0.05em solid #6b2a7d;
       animation: none;
     }
   }
@@ -1344,61 +1344,61 @@
   .loader-38 {
     height: 0.1em;
     width: 0.1em;
-    box-shadow: -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color;
+    box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d;
     animation: loader-38 6s infinite;
   }
 
   @keyframes loader-38 {
     0% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d;
     }
 
     8.33% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d;
     }
 
     16.66% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     24.99% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     33.32% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d;
     }
 
     41.65% {
-      box-shadow: 0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color;
+      box-shadow: 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d;
     }
 
     49.98% {
-      box-shadow: 0.2em 0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: 0.2em 0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     58.31% {
-      box-shadow: -0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     66.64% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     74.97% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, 0.2em -0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, 0.2em -0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     83.3% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, 0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, 0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     91.63% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color, -0.2em 0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d, -0.2em 0.2em 0 0.1em #6b2a7d;
     }
 
     100% {
-      box-shadow: -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color, -0.2em -0.2em 0 0.1em $info-color;
+      box-shadow: -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d, -0.2em -0.2em 0 0.1em #6b2a7d;
     }
   }
 
@@ -1507,10 +1507,10 @@
   }
 
   .loader-41 {
-    border: 0.05em var(--theme-default) solid;
+    border: 0.05em #6b2a7d solid;
     border-radius: 0.2em;
     position: relative;
-    background: linear-gradient(45deg, transparent 48%, var(--theme-default) 50%, var(--theme-default) 50%, transparent 52%, transparent), linear-gradient(-45deg, transparent 48%, var(--theme-default) 50%, var(--theme-default) 50%, transparent 52%, transparent);
+    background: linear-gradient(45deg, transparent 48%, #6b2a7d 50%, #6b2a7d 50%, transparent 52%, transparent), linear-gradient(-45deg, transparent 48%, #6b2a7d 50%, #6b2a7d 50%, transparent 52%, transparent);
     background-size: 0.5em 0.5em;
     background-position: 0% 0%;
     animation: loader-41 1s infinite linear;
@@ -1529,9 +1529,9 @@
   .loader-42 {
     width: 2em;
     height: 0.66em;
-    border: 0.05em var(--theme-secondary) solid;
+    border: 0.05em #6b2a7d solid;
     border-radius: 0.1em;
-    background: linear-gradient(-60deg, transparent 0%, transparent 50%, var(--theme-secondary) 50%, var(--theme-secondary) 75%, transparent 75%, transparent);
+    background: linear-gradient(-60deg, transparent 0%, transparent 50%, #6b2a7d 50%, #6b2a7d 75%, transparent 75%, transparent);
     background-size: 1em 2em;
     background-position: 0 0;
     animation: loader-42 0.8s infinite linear;
