@@ -147,9 +147,7 @@ const handleSubmit = async (e) => {
                         </H6>
                         <span>
                             {user.street!=""?user.street+",":''}
-                            {user.city!=""?user.city+",":''}
-                            {user.state!=""?user.state+",":''}
-                            {user.country!=""?user.country:''}
+                            {user.city!=""?user.city:''}
                         </span>
                       </div>
                     </Col>
@@ -177,48 +175,34 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
    console.log("edit model", user)
   return (
     <Modal isOpen={showModal} toggle={closeModal}>
-      <ModalHeader toggle={closeModal}>Edit Profile</ModalHeader>
+      <ModalHeader toggle={closeModal}>Editer le profil</ModalHeader>
       <ModalBody>
         <form onSubmit={handleSubmit}>
           <Row>
             <Col md={12}>
               <FormGroup>
-                <Label for='name'>Name</Label>
+                <Label for='name'>Nom</Label>
                 <Input
                   type='text'
                   name='name'
                   id='name'
-                  placeholder='Enter your name'
+                  placeholder='Entrez votre nom'
                   value={user.name}
                   onChange={(e) => setUser({ ...user, name: e.target.value })}
                 />
               </FormGroup>
             </Col>
-            {userRole==="member"?
-            <Col md={12}>
-              <FormGroup>
-                <Label for='designation'>Designation</Label>
-                <Input
-                  type='text'
-                  name='designation'
-                  id='designation'
-                  placeholder='Enter your designation'
-                  value={user.job_designation}
-                  onChange={(e) => setUser({ ...user, job_designation: e.target.value })}
-                />
-              </FormGroup>
-            </Col>:''
-            }
+            
           </Row>
           <Row>
             <Col md={12}>
               <FormGroup>
-                <Label for='email'>Email</Label>
+                <Label for='email'>E-mail</Label>
                 <Input
                   type='email'
                   name='email'
                   id='email'
-                  placeholder='Enter your email'
+                  placeholder='Entrer votre Email'
                   value={user.email}
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
@@ -227,12 +211,12 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
             
               <Col md={12}>
                 <FormGroup>
-                  <Label for='phone'>Phone No.</Label>
+                  <Label for='phone'>Pas de téléphone.</Label>
                   <Input
                     type='tel'
                     name='phone'
                     id='phone'
-                    placeholder='Enter your phone number'
+                    placeholder='Entrez votre numéro de téléphone'
                     value={user.phone}
                     onChange={(e) => setUser({ ...user, phone: e.target.value })}
                   />
@@ -240,12 +224,12 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
               </Col>
               <Col md={12}>
               <FormGroup>
-                <Label for='location'>Street</Label>
+                <Label for='location'>Rue</Label>
                 <Input
                   type='text'
                   name='street'
                   id='location'
-                  placeholder='Enter your Street Address'
+                  placeholder='Entrez votre adresse postale'
                   value={user.street}
                   onChange={(e) => setUser({ ...user, street: e.target.value })}
                 />
@@ -253,59 +237,35 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for='location'>City</Label>
+                <Label for='location'>Ville</Label>
                 <Input
                   type='text'
                   name='city'
                   id='location'
-                  placeholder='Enter your City'
+                  placeholder='Entrez votre ville'
                   value={user.city}
                   onChange={(e) => setUser({ ...user, city: e.target.value })}
                 />
               </FormGroup>
             </Col>
+            
             <Col md={6}>
               <FormGroup>
-                <Label for='location'>State</Label>
-                <Input
-                  type='text'
-                  name='state'
-                  id='location'
-                  placeholder='Enter your State'
-                  value={user.state}
-                  onChange={(e) => setUser({ ...user, state: e.target.value })}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for='zip'>Zip</Label>
+                <Label for='zip'>Code postal</Label>
                 <Input
                   type='text'
                   name='zip'
                   id='zip'
-                  placeholder='Enter your zip'
+                  placeholder='Entrez votre code postal'
                   value={user.zip}
                   onChange={(e) => setUser({ ...user, zip: e.target.value })}
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
+            
+            <Col md={12}>
               <FormGroup>
-                <Label for='zip'>Country</Label>
-                <Input
-                  type='text'
-                  name='country'
-                  id='country'
-                  placeholder='Enter your country'
-                  value={user.country}
-                  onChange={(e) => setUser({ ...user, country: e.target.value })}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for='zip'>Profile Image</Label>
+                <Label for='zip'>Image de profil</Label>
                 <Input
                   type='file'
                   name='profile_image'
@@ -318,7 +278,7 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
           <div>
           <ModalFooter>
               <button className='btn' type='submit' disabled={loading}>
-                {loading?'Saving...':'Save Changes'}
+                {loading?'Enregistrer les modifications...':'Sauvegarder les modifications'}
               </button>
               <button className='btn' onClick={closeModal}>
                 Close

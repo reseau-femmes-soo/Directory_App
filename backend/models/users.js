@@ -39,7 +39,7 @@ const UserSchema = new mongoose.Schema({
     },
     job_designation:{
         type:String,
-        default:null
+        default:"Membre CA"
     },
     profile_image:{
         type:Object,

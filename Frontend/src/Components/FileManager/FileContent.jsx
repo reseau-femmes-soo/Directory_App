@@ -120,7 +120,7 @@ function App() {
     
     fileType=fileType.path.url.slice(fileType.path.url.lastIndexOf(".")+1);
 
-    const blueColor = '#6b2a7d';
+    const blueColor = '#c1a1cf';
     switch (fileType) {
       case 'pdf':
         return <BiSolidFilePdf style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;

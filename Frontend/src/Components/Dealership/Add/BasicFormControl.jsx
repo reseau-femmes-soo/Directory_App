@@ -17,10 +17,7 @@ const BasicFormControlClass = () => {
         phone : yup.string().required(),
         street : yup.string().required(),
         city: yup.string().required(),
-        state: yup.string().required(),
         zip: yup.number().required(),
-        country: yup.string().required(),
-        job_designation:yup.string().required(),
     });
 
     const formik = useFormik({
@@ -30,20 +27,14 @@ const BasicFormControlClass = () => {
             phone:'',
             street:'',
             city:'',
-            state:'',
-            country:'', 
-            zip:'',   
-            job_designation:'',   
+            zip:'',  
             profile_image: null,
             role:"member"
         },
         validationSchema: validationSchema,
      
         onSubmit: async (values) => {
-                // const formData = new FormData();
-                // for (let value in values) {
-                //     formData.append(value, values[value]);
-                // }
+                console.log('submit')
                 setLoading(true)
                 const response= await POSTFILE('/user',values,setLoading);
                 console.log(values)
@@ -58,7 +49,7 @@ const BasicFormControlClass = () => {
     return (
         <Fragment>
             <Card>
-            <CardHeader > <H5> Add Member</H5>   </CardHeader>
+            <CardHeader > <H5> Ajouter un membre</H5>   </CardHeader>
                 <Form className="form theme-form" onSubmit={formik.handleSubmit} method='post'>
                     <CardBody>
                         <Row className='mb-3'>
@@ -70,7 +61,7 @@ const BasicFormControlClass = () => {
                                     { item.type =='file' ?
                                     <Input className="form-control"  name={item.name} type={item.type} onChange= {(e) => formik.setFieldValue(item.name, e.currentTarget.files[0]) } />
                                    :
-                                    <Input className="form-control" name={item.name} type={item.type} placeholder={item.placeholder}  value={formik.values[item.name]} onBlur={formik.handleBlur} onChange=  {formik.handleChange } />
+                                    <Input className="form-control" name={item.name} type={item.type} placeholder={item.placeholder}  value={formik.values[item.name]} onBlur={formik.handleBlur} onChange={formik.handleChange } />
                                     }            
                                     <small style={{color : "red"}}>  {formik.touched[item.name] && formik.errors[item.name] }</small>
                                 </FormGroup>
@@ -82,8 +73,8 @@ const BasicFormControlClass = () => {
                       
                     </CardBody>
                     <CardFooter className="text-end">
-                        <button className='btn' disabled={loading}>{loading?'Adding':'Add Member'}</button>
-                        <button className='btn' type='button' disabled={loading} onClick={()=>formik.resetForm()}>Cancel</button>
+                        <button className='btn' disabled={loading} type='submit'>{loading?'Ajouter...':'Ajouter un membre'}</button>
+                        <button className='btn' type='button' disabled={loading} onClick={()=>formik.resetForm()}>Annuler</button>
                     </CardFooter>
                 </Form>
             </Card>

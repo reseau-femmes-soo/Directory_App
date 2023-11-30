@@ -12,7 +12,7 @@
 //   },
 
 //     {
-//     menutitle: "Applications",
+//     menutitle: "paramètres",
 //     menucontent: "Ready to use Apps",
     
 //     Items:[
@@ -54,7 +54,7 @@ export const MENUITEMS= ()=> {
   if(userRole==="admin"){
     return [
         {
-          menutitle: "GÉNÉRAL",
+          menutitle: "tableau de bord",
           menucontent: "Dashboards,Widgets",
           Items: [
                { path: '/Home', icon: "icofont-home", title: "Accueil", type: "link" },
@@ -64,7 +64,7 @@ export const MENUITEMS= ()=> {
         },
       
           {
-          menutitle: "Applications",
+          menutitle: "paramètres",
           menucontent: "Ready to use Apps",
           
           Items:[
@@ -76,7 +76,7 @@ export const MENUITEMS= ()=> {
   }
     return [
       {
-        menutitle: "GÉNÉRAL",
+        menutitle: "tableau de bord",
         menucontent: "Dashboards,Widgets",
         Items: [
              { path: '/Home', icon: "icofont-home", title: "Accueil", type: "link" },
@@ -86,7 +86,7 @@ export const MENUITEMS= ()=> {
       },
     
         {
-        menutitle: "Applications",
+        menutitle: "paramètres",
         menucontent: "Ready to use Apps",
         
         Items:[
