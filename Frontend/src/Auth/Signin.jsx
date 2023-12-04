@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from 'axios';
 import image from '../assets/images/logo/logo.png';
 import { POST } from "../api/Axios";
+import { BiSolidShow } from "react-icons/bi";
+import { BiHide } from "react-icons/bi";
 
 const Signin = ({ selected }) => {
 
@@ -65,8 +67,8 @@ const Signin = ({ selected }) => {
                     <div className="position-relative">
                       <Input className="form-control" type={togglePassword ? "text" : "password"} onChange={(e) => setUser({...user,password:e.target.value})} value={user.password} placeholder="Enter your password" required />
                       
-                      <div className="show-hide" onClick={() => setTogglePassword(!togglePassword)}>
-                        <span className={togglePassword ? "" : "show"}></span>
+                      <div className="show-hide" onClick={() => setTogglePassword(!togglePassword)} style={{fontSize:'20px',cursor:'pointer'}}>
+                        {togglePassword ? <BiHide/> : <BiSolidShow/>}
                       </div>
                     </div>
                   </FormGroup>
