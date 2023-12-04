@@ -19,6 +19,8 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import {DELETE, GET, POST, POSTFILE} from '../../api/Axios'
 import { toast } from 'react-toastify';
 import { Breadcrumbs } from '../../AbstractElements';
+import { FaFileCirclePlus } from "react-icons/fa6";
+import { BiSolidFolderPlus } from "react-icons/bi";
 
 function FolderComponent() {
   const { folderId, } = useParams();
@@ -113,21 +115,21 @@ function FolderComponent() {
     const blueColor = '#6b2a7d';
     switch (fileType) {
       case 'pdf':
-        return <BiSolidFilePdf style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <BiSolidFilePdf style={{ fontSize: '48px', color: blueColor }} />;
       case 'txt':
-        return <FiFileText  style={{ fontSize: '48px', marginRight: '10px', color: blueColor  }} />;
+        return <FiFileText  style={{ fontSize: '48px', color: blueColor  }} />;
       case 'zip':
-        return <FaFileArchive style={{ fontSize: '48px', marginRight: '10px' , color: blueColor }} />;
+        return <FaFileArchive style={{ fontSize: '48px' , color: blueColor }} />;
       case 'psd':
-        return <FaFileImage style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <FaFileImage style={{ fontSize: '48px', color: blueColor }} />;
       case 'xlsx':
-        return <BsFiletypeXls style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <BsFiletypeXls style={{ fontSize: '48px', color: blueColor }} />;
       case 'docx':
-        return <AiFillFileWord style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <AiFillFileWord style={{ fontSize: '48px', color: blueColor }} />;
         case 'png':
-          return <BsFiletypePng style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+          return <BsFiletypePng style={{ fontSize: '48px', color: blueColor }} />;
       default:
-        return <FaFile style={{ fontSize: '48px', marginRight: '10px', color: blueColor  }} />;
+        return <FaFile style={{ fontSize: '48px', color: blueColor  }} />;
     }
   }
 
@@ -172,7 +174,7 @@ function FolderComponent() {
         {
           userRole==="admin"?  
             <div >
-                <button class="btn" onClick={() => setShowUploadModal(true)} >Télécharger un fichier</button>
+                <button class="btn" onClick={() => setShowUploadModal(true)} ><FaFileCirclePlus style={{fontSize:'23px'}}/><span className='btntext'>Télécharger un fichier</span></button>
                 <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Télécharger un fichier</Modal.Title>
@@ -205,7 +207,7 @@ function FolderComponent() {
                 </Modal>
               
               
-                <button class="btn" onClick={() => setShowCreateModal(true)} style={{width:'200px'}}>Créer un dossier</button>
+                <button class="btn btn_black" onClick={() => setShowCreateModal(true)} ><BiSolidFolderPlus style={{fontSize:'23px'}}/><span className='btntext'>Nouveau dossier</span></button>
                 <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
                 <Modal.Header closeButton>
                   <Modal.Title style={{ fontSize: '2rem' }}>Créer un dossier</Modal.Title>

@@ -8,10 +8,12 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
-import { MdClose, MdMoreVert,MdDelete   } from 'react-icons/md';
+import { MdClose, MdMoreVert,MdDelete,MdCreateNewFolder} from 'react-icons/md';
 import { useUser } from './../../Auth/UserContext';
 import { FaFileArchive, FaFile, FaFileImage } from 'react-icons/fa';
 import { FiFileText } from 'react-icons/fi';
+import { BiSolidFolderPlus } from "react-icons/bi";
+import { FaFileCirclePlus } from "react-icons/fa6";
 import {BiSolidFilePdf} from 'react-icons/bi';
 import {BsFiletypeXls, BsFiletypePng} from 'react-icons/bs';
 import {AiFillFileWord} from 'react-icons/ai';
@@ -123,21 +125,21 @@ function App() {
     const blueColor = '#c1a1cf';
     switch (fileType) {
       case 'pdf':
-        return <BiSolidFilePdf style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <BiSolidFilePdf style={{ fontSize: '48px',  color: blueColor }} />;
       case 'txt':
-        return <FiFileText  style={{ fontSize: '48px', marginRight: '10px', color: blueColor  }} />;
+        return <FiFileText  style={{ fontSize: '48px',  color: blueColor  }} />;
       case 'zip':
-        return <FaFileArchive style={{ fontSize: '48px', marginRight: '10px' , color: blueColor }} />;
+        return <FaFileArchive style={{ fontSize: '48px', color: blueColor }} />;
       case 'psd':
-        return <FaFileImage style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <FaFileImage style={{ fontSize: '48px',  color: blueColor }} />;
       case 'xlsx':
-        return <BsFiletypeXls style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <BsFiletypeXls style={{ fontSize: '48px',  color: blueColor }} />;
       case 'docx':
-        return <AiFillFileWord style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+        return <AiFillFileWord style={{ fontSize: '48px',  color: blueColor }} />;
         case 'png':
-          return <BsFiletypePng style={{ fontSize: '48px', marginRight: '10px', color: blueColor }} />;
+          return <BsFiletypePng style={{ fontSize: '48px',  color: blueColor }} />;
       default:
-        return <FaFile style={{ fontSize: '48px', marginRight: '10px', color: blueColor  }} />;
+        return <FaFile style={{ fontSize: '48px',  color: blueColor  }} />;
     }
   }
 
@@ -178,7 +180,7 @@ function App() {
         {
           userRole==="admin"?
           <div >
-              <button class="btn" onClick={() => setShowUploadModal(true)} >Télécharger un fichier</button>
+              <button class="btn" onClick={() => setShowUploadModal(true)} ><FaFileCirclePlus style={{fontSize:'23px'}}/><span className='btntext'>Télécharger un fichier</span></button>
               <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)}>
               <Modal.Header closeButton>
                   <Modal.Title>Télécharger un fichier</Modal.Title>
@@ -212,7 +214,7 @@ function App() {
               </Modal>
             
             
-              <button class="btn" onClick={() => setShowCreateModal(true)} style={{width:'200px'}}>Nouveau dossier</button>
+              <button class="btn btn_black" onClick={() => setShowCreateModal(true)} ><BiSolidFolderPlus style={{fontSize:'23px'}}/><span className='btntext'>Nouveau dossier</span></button>
               <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
               <Modal.Header closeButton>
                 <Modal.Title style={{ fontSize: '2rem' }}>Nouveau dossier</Modal.Title>
@@ -251,14 +253,14 @@ function App() {
 
           {
             folders.map(folder => (
-              <div className='col-md-2 col-sm-4 col-4 mt-2' key={folder._id} >
+              <div className='col-md-2 col-sm-6 col-6 mt-2' key={folder._id} >
                   <center>
                     <div style={{ display: 'flex', justifyContent: 'center',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'5px'}} >
                         <Link to={`/folders/${folder._id}`} style={{ textDecoration: 'none' }}>
                         <span style={{ fontSize: '48px', color: '#6b2a7d' }}>
                           <FaFolderOpen  />
                         </span>
-                          <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none', whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100px' }}>{folder.name}</div>
+                          <div style={{ marginTop: '5px', color: 'black', textDecoration: 'none', whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'56px' }}>{folder.name}</div>
                       </Link>
                       <div style={{position:'absolute',right:'15px',top:'5px'}}>
                         {userRole==="admin" && (
@@ -272,13 +274,13 @@ function App() {
             ))
           }
           {Array.isArray(fileList) && fileList.map(file => (
-        <div key={file._id} className='col-md-2 col-sm-4 col-4 mt-2'>
+        <div key={file._id} className='col-md-2 col-sm-6 col-6 mt-2'>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',border:'1px solid rgba(0, 0, 0, 0.175)',borderRadius:'5px',}}>
               <div style={{paddingTop:'18px',paddingBottom:'5px'}}>
                 <div >
                   {getFileIcon(file)}
                 </div>
-              <div style={{ marginTop: '7px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100px' }}>{file.name || file.fileName}</div>
+              <div style={{ marginTop: '7px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'56px' }}>{file.name || file.fileName}</div>
               </div>
             </div>
             <div style={{ position: 'absolute', top: '10px', right: '10px' }}>

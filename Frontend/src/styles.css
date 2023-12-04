@@ -13,6 +13,17 @@
     color:white;
     margin: 3px;
 }
+.btn_black:hover{
+    color:black !important;
+    background-color:white !important;
+    box-shadow: 1px 1px 20px 0 rgb(0, 0, 0);
+}
+.btn_black{
+    border-radius:100px;
+    background-color:black;
+    color:white;
+    margin: 3px;
+}
 .forgot_link{
     text-decoration: none;
     float: right;
@@ -25,4 +36,15 @@
 }
 .danger{
     color:red;
+}
+
+.btntext{
+    display: inline-block;
+    padding-left: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .btntext{
+        display: none;
+    }
 }
