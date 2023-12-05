@@ -232,7 +232,7 @@ function App() {
               </Modal.Body>
               <Modal.Footer style={{ borderTop: 'none' }}>
                 <button className="btn" onClick={() => setShowCreateModal(false)}>
-                  Close
+                Fermer
                 </button>
                 <button className="btn" onClick={handleCreateFolder} disabled={uploading}>
                 {uploading ? 'Création...' : 'Créer'}

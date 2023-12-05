@@ -281,7 +281,7 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
                 {loading?'Enregistrer les modifications...':'Sauvegarder les modifications'}
               </button>
               <button className='btn' onClick={closeModal}>
-                Close
+              Fermer
               </button>
           </ModalFooter>
           </div>

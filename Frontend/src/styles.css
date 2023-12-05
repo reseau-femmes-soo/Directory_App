@@ -48,3 +48,6 @@
         display: none;
     }
 }
+.custom-file-label::after {
+    content: "What's up?";
+  }
