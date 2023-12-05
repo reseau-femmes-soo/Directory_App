@@ -43,7 +43,7 @@ export const createFile= async (req, res)=>{
           });
           
           if (existingFile) {
-            return res.status(400).json({ message: 'File already exists.' });
+            return res.status(400).json({ message: 'Le fichier existe déjà.' });
           }
 
 
@@ -70,10 +70,10 @@ export const createFile= async (req, res)=>{
         // Check if the file was successfully added
         if (savedFile) {
           // Return a 200 status with a success message
-          return res.status(200).json({ message: 'File successfully added.' });
+          return res.status(200).json({ message: 'Fichier ajouté avec succès.' });
         } else {
           // If for some reason the file was not saved, return a 500 status
-          return res.status(500).json({ message: 'Failed to add file.' });
+          return res.status(500).json({ message: "Échec de l'ajout du fichier." });
         }
 
     }catch(error){
@@ -129,7 +129,7 @@ export const UpdateFiles=async(req, res)=>{
             name:file?.name
         });
         if (existingFile)
-            return res.status(400).json({ message:'File already exist...'});
+            return res.status(400).json({ message:'Le fichier existe déjà...'});
 
 
         const updatedFile= await Files.findByIdAndUpdate(
@@ -140,7 +140,7 @@ export const UpdateFiles=async(req, res)=>{
             }
         );
 
-        return res.status(200).json({ message:'File updated successfully...'});
+        return res.status(200).json({ message:'Fichier mis à jour avec succès...'});
 
     }catch(error){  
         // If an error occurs during the process, return a 500 status with the error message
@@ -163,9 +163,9 @@ export const DeleteFile= async (req,res)=>{
         const respurse_deleted = await cloudinary.v2.api.delete_resources([publicIdToDelete],{ type: 'upload', resource_type: 'raw' });
         if(respurse_deleted){
             const delete_file=await Files.findOneAndDelete({_id:id})
-            return res.status(200).json({ message: "File Deleted"});
+            return res.status(200).json({ message: "Fichier supprimé"});
         }else{
-            return res.status(500).json({ message: "Unable to Delete File"});
+            return res.status(500).json({ message: "Impossible de supprimer le fichier"});
         }
 
     } catch (error) {

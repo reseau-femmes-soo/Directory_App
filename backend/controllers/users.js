@@ -47,7 +47,7 @@ export const createUser= async (req, res)=>{
        
         const existingUser= await Users.findOne({email});
         if (existingUser)
-            return res.status(400).json({ message:'User already exist...'});
+            return res.status(400).json({ message:"L'utilisateur existe déjà..."});
 
         if(req.file){
             if (req.file || Object.keys(req.file).length !== 0){
@@ -75,10 +75,10 @@ export const createUser= async (req, res)=>{
             let message=`<p>Your Account has Created Successfully. Your Credentials for login are: <br> <b>Email</b>: ${email} <br> <b>Password</b>: ${password}</p>`
             SendEmail(email,"Account Creation",message);
           // Return a 200 status with a success message
-          return res.status(200).json({ message: 'User successfully added.' });
+          return res.status(200).json({ message: 'Utilisateur ajouté avec succès.' });
         } else {
           // If for some reason the user was not saved, return a 500 status
-          return res.status(500).json({ message: 'Failed to add user.' });
+          return res.status(500).json({ message: "Échec de l'ajout d'un utilisateur." });
         }
 
     }catch(error){
@@ -142,7 +142,7 @@ export const UpdateProfile=async(req, res)=>{
             email:user?.email
         });
         if (existingUser)
-            return res.status(400).json({ message:'User already exist...'});
+            return res.status(400).json({ message:"L'utilisateur existe déjà..."});
 
         if(req.file){
             if (req.file || Object.keys(req.file).length !== 0){
@@ -172,7 +172,7 @@ export const UpdateProfile=async(req, res)=>{
             }
         );
 
-        return res.status(200).json({ message:'User updated successfully...'});
+        return res.status(200).json({ message:"L'utilisateur a été mis à jour avec succès..."});
 
     }catch(error){  
         // If an error occurs during the process, return a 500 status with the error message
@@ -198,7 +198,7 @@ export const UpdateUsers=async(req, res)=>{
             email:user?.email
         });
         if (existingUser)
-            return res.status(400).json({ message:'User already exist...'});
+            return res.status(400).json({ message:"L'utilisateur existe déjà..."});
 
 
         const updatedUser= await Users.findByIdAndUpdate(
@@ -209,7 +209,7 @@ export const UpdateUsers=async(req, res)=>{
             }
         );
 
-        return res.status(200).json({ message:'User updated successfully...'});
+        return res.status(200).json({ message:"L'utilisateur a été mis à jour avec succès..."});
 
     }catch(error){  
         // If an error occurs during the process, return a 500 status with the error message
@@ -225,7 +225,7 @@ export const DeleteUser= async (req,res)=>{
 
     try {
         const deleteUser=await Users.findOneAndDelete({_id:id});
-        return res.status(200).json({ message: "User Deleted"});
+        return res.status(200).json({ message: "Utilisateur supprimé"});
     } catch (error) {
         console.error('Error creating user:', error);
         return res.status(500).json({ message: error });

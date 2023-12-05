@@ -27,7 +27,7 @@ export const createFolder= async (req, res)=>{
        
         const existingFolder= await Folders.findOne({name});
         if (existingFolder)
-            return res.status(400).json({ message:'Folder already exist...'});
+            return res.status(400).json({ message:'Le dossier existe déjà...'});
 
 
         
@@ -37,10 +37,10 @@ export const createFolder= async (req, res)=>{
         // Check if the folder was successfully added
         if (savedFolder) {
           // Return a 200 status with a success message
-          return res.status(200).json({ message: 'Folder successfully added.' });
+          return res.status(200).json({ message: 'Dossier ajouté avec succès.' });
         } else {
           // If for some reason the folder was not saved, return a 500 status
-          return res.status(500).json({ message: 'Failed to add folder.' });
+          return res.status(500).json({ message: "Échec de l'ajout du dossier." });
         }
 
     }catch(error){
@@ -96,7 +96,7 @@ export const UpdateFolders=async(req, res)=>{
             name:folder?.name
         });
         if (existingFolder)
-            return res.status(400).json({ message:'Folder already exist...'});
+            return res.status(400).json({ message:'Le dossier existe déjà...'});
 
 
         const updatedFolder= await Folders.findByIdAndUpdate(
@@ -107,7 +107,7 @@ export const UpdateFolders=async(req, res)=>{
             }
         );
 
-        return res.status(200).json({ message:'Folder updated successfully...'});
+        return res.status(200).json({ message:'Dossier mis à jour avec succès...'});
 
     }catch(error){  
         // If an error occurs during the process, return a 500 status with the error message
@@ -126,10 +126,10 @@ export const DeleteFolder= async (req,res)=>{
         const subfileCount = await Files.countDocuments({folder_id:id});
         console.log({subdepartmenCount,subfileCount})
         if(subdepartmenCount>0 ||  subfileCount>0){
-            return res.status(404).json({ message: "Cannot Delete Folder because it has Sub-Folders & Files" });
+            return res.status(404).json({ message: "Impossible de supprimer le dossier car il contient des sous-dossiers et des fichiers" });
         }
         const deleteFolder=await Folders.findOneAndDelete({_id:id});
-        return res.status(200).json({ message: "Folder Deleted"});
+        return res.status(200).json({ message: "Dossier supprimé"});
     } catch (error) {
         console.error('Error creating folder:', error);
         return res.status(500).json({ message: error });

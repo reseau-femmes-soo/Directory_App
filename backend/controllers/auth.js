@@ -10,7 +10,7 @@ export const Signin = async (req, res)=>{
     try{
         const loginSchema = Joi.object({
             email: Joi.string().email().required(),
-            password: Joi.string().min(8).max(30).message('Password must be at least 8 characters long').required(),
+            password: Joi.string().min(8).max(30).message('Le mot de passe doit comporter au moins 8 caractères').required(),
         });
         const { error, value } = loginSchema.validate(req.body);
 
@@ -21,11 +21,11 @@ export const Signin = async (req, res)=>{
 
         const user=await Users.findOne({email});
         if(!user)
-            return res.status(404).json({message:"User not found"});
+            return res.status(404).json({message:"Utilisateur non trouvé"});
         
         const passwordMatched =await bcrypt.compare(password,user.password);
         if(!passwordMatched)
-            return res.status(404).json({message: "Invalid Password"})
+            return res.status(404).json({message: "Mot de passe incorrect"})
 
         const token= jwt.sign(
             {
@@ -39,7 +39,7 @@ export const Signin = async (req, res)=>{
             }
         );
         
-        return res.status(200).json({message:"Sucessfully Login",token,role:user.role})
+        return res.status(200).json({message:"Connectez-vous avec succès",token,role:user.role})
 
     }catch(error){
         return res.status(500).json({message:error})
@@ -55,7 +55,7 @@ export const ForgotPassword = async (req, res) => {
     try {
       const existingUser = await Users.findOne({ email });
       if (!existingUser)
-        return res.status(201).json({ message: "Invalid Email" });
+        return res.status(201).json({ message: "Email invalide" });
       
       const token = randomString(10);
       await Users.findByIdAndUpdate(
@@ -97,11 +97,11 @@ export const ForgotPassword = async (req, res) => {
         },
         (error, info) => {
           if (error) {
-            res.status(404).json("Email is not valid!");
+            res.status(404).json("L'email n'est pas valide!");
           } else {
             res.status(200).json({
               error:false,
-              message: "Please check your email to get reset password link.",
+              message: "Veuillez vérifier votre courrier électronique pour obtenir le lien de réinitialisation du mot de passe.",
             });
           }
         }
@@ -127,7 +127,7 @@ export const ForgotPassword = async (req, res) => {
     try {
       const existingUser = await Users.findOne({ resetToken:token });
       if (!existingUser)
-        return res.status(404).json({ message: "Invalid token" });
+        return res.status(404).json({ message: "Jeton invalide" });
   
       const hashPassword = await bcrypt.hash(password, 10);
       const data = await Users.findByIdAndUpdate(
@@ -138,7 +138,7 @@ export const ForgotPassword = async (req, res) => {
           new: true,
         }
       );
-      res.status(200).json({error:false,message:"Password Changed Successfully"});
+      res.status(200).json({error:false,message:"Le mot de passe a été changé avec succès"});
     } catch (error) {
       res.status(404).json({ message: error.message });
     }
