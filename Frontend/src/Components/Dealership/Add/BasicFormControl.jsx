@@ -59,7 +59,14 @@ const BasicFormControlClass = () => {
                                 <FormGroup>
                                     <Label htmlFor="exampleFormControlInput1">{item.title}</Label>
                                     { item.type =='file' ?
-                                    <Input className="form-control"  name={item.name} type={item.type} onChange= {(e) => formik.setFieldValue(item.name, e.currentTarget.files[0]) } />
+                                    <>
+                                        <label htmlFor="fileInput" style={{ cursor: 'pointer',border:'1px solid #dee2e6',width:'100%',height:'40px',borderRadius:'5px',padding:'7px' }}>
+                                        {/* Custom text for the file input */}
+                                        Choisir le fichier: {formik.values[item.name]!=null ? formik.values[item.name].name: 'Aucun fichier...'}
+                                        {console.log(formik.values[item.name])}
+                                        </label>
+                                        <Input className="form-control" id="fileInput" style={{ display: 'none' }}  name={item.name} type={item.type} onChange= {(e) => formik.setFieldValue(item.name, e.currentTarget.files[0]) } />
+                                    </>
                                    :
                                     <Input className="form-control" name={item.name} type={item.type} placeholder={item.placeholder}  value={formik.values[item.name]} onBlur={formik.handleBlur} onChange={formik.handleChange } />
                                     }            

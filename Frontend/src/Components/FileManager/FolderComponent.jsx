@@ -187,8 +187,14 @@ function FolderComponent() {
                       placeholder="Entrez le nom du fichier"
                       className='form-control'
                     />
+                    <label htmlFor="fileInput" style={{ cursor: 'pointer',border:'1px solid #dee2e6',width:'100%',height:'40px',borderRadius:'5px',padding:'7px',marginTop:'20px' }}>
+                      {/* Custom text for the file input */}
+                      Choisir le fichier: {file.file ? file.file.name : 'Aucun fichier choisi'}
+                    </label>
                     <input
                       type="file"
+                      id="fileInput"
+                    style={{ display: 'none' }}
                       onChange={(e) => setFile({...file,file:e.target.files[0]})}
                       name='file'
                       ref={fileInputRef}

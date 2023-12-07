@@ -266,9 +266,15 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
             <Col md={12}>
               <FormGroup>
                 <Label for='zip'>Image de profil</Label>
+                <label htmlFor="fileInput" style={{ cursor: 'pointer',border:'1px solid #dee2e6',width:'100%',height:'40px',borderRadius:'5px',padding:'7px' }}>
+                    {/* Custom text for the file input */}
+                    Choisir le fichier: {profile_image ? profile_image.name : 'Aucun fichier choisi'}
+                </label>
                 <Input
                   type='file'
                   name='profile_image'
+                  id="fileInput"
+                  style={{ display: 'none' }}
                   placeholder='Enter your Profile Image'
                   onChange={(e) => setProfileImage(e.target.files[0])}
                 />
