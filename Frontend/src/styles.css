@@ -52,5 +52,5 @@
     content: "What's up?";
   }
 .hkULGy{
-    display: none;
+    display: none !important;
 }
