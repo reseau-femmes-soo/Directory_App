@@ -8,40 +8,60 @@ import nodemailer from "nodemailer";
 export const Signin = async (req, res)=>{
     const {email,password} = req.body;
     try{
-        const loginSchema = Joi.object({
-            email: Joi.string().email().required(),
-            password: Joi.string().min(8).max(30).message('Le mot de passe doit comporter au moins 8 caractères').required(),
-        });
-        const { error, value } = loginSchema.validate(req.body);
+      const loginSchema = Joi.object({
+        email: Joi.string()
+            .email().min(1)  // Adjust this validation as needed
+            .required()
+            .messages({
+                'string.email': '\"e-mail\" doit être une adresse e-mail valide',
+                'string.base': "l'e-mail doit être une chaîne"
+            }),
+        password: Joi.string()
+            .min(8).max(30)
+            .required()
+            .messages({
+                'string.min': 'Le mot de passe doit comporter au moins 8 caractères',
+                'string.max': 'Le mot de passe ne doit pas dépasser 30 caractères',
+                'string.base': 'le mot de passe doit être une chaîne'
+            }),
+    });
+    
+    
+  
+      const { error, value } = loginSchema.validate(req.body);
 
-        if (error) {
-            // Return a 400 Bad Request response if validation fails
-            return res.status(400).json({ message: error.details[0].message });
-        }
+      if (error) {
+          // Return a 400 Bad Request response if validation fails
+          if(error.details[0].message.includes("is not allowed to be empty")){
+            return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
+          }
+          return res.status(400).json({ message: error.details[0].message });
+      }
 
-        const user=await Users.findOne({email});
-        if(!user)
-            return res.status(404).json({message:"Utilisateur non trouvé"});
-        
-        const passwordMatched =await bcrypt.compare(password,user.password);
-        if(!passwordMatched)
-            return res.status(404).json({message: "Mot de passe incorrect"})
+      const user=await Users.findOne({email});
+      if(!user)
+          return res.status(404).json({message:"Utilisateur non trouvé"});
+      
+      const passwordMatched =await bcrypt.compare(password,user.password);
+      if(!passwordMatched)
+          return res.status(404).json({message: "Mot de passe incorrect"})
 
-        const token= jwt.sign(
-            {
-                id:user._id,
-                email:user.email,
-                role:user.role
-            },
-            "Signin",
-            {
-                expiresIn: "3d"
-            }
-        );
-        
-        return res.status(200).json({message:"Connectez-vous avec succès",token,role:user.role})
+      const token= jwt.sign(
+          {
+              id:user._id,
+              email:user.email,
+              role:user.role
+          },
+          "Signin",
+          {
+              expiresIn: "3d"
+          }
+      );
+      
+      return res.status(200).json({message:"Connectez-vous avec succès",token,role:user.role})
 
     }catch(error){
+      console.log(error)
         return res.status(500).json({message:error})
     }
 };

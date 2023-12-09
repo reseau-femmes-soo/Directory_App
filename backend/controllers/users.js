@@ -14,8 +14,10 @@ cloudinary.config({
 
 
 const addUserSchema = Joi.object({
-    name: Joi.string().min(3).max(30).required(),
-    email: Joi.string().email().required(),
+    name: Joi.string().required(),
+    email: Joi.string().email().required().messages({
+        'string.email': '\"e-mail\" doit être une adresse e-mail valide',
+    }),
     phone: Joi.string().required(),
     job_designation:Joi.string().allow(null),
     address: Joi.string(),
@@ -23,8 +25,10 @@ const addUserSchema = Joi.object({
 }).unknown();
 
 const updateUserSchema = Joi.object({
-    name: Joi.string().min(3).max(30).required(),
-    email: Joi.string().email().required(),
+    name: Joi.string().required(),
+    email: Joi.string().email().required().messages({
+        'string.email': '\"e-mail\" doit être une adresse e-mail valide',
+    }),
     phone: Joi.string().required(),
     address: Joi.string().allow(null),
     role:Joi.string().required(),
@@ -42,6 +46,12 @@ export const createUser= async (req, res)=>{
 
         if (error) {
             // Return a 400 Bad Request response if validation fails
+            if(error.details[0].message.includes("is not allowed to be empty")){
+                return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
+            }
+            if(error.details[0].message.includes("must be a string")){
+                return res.status(400).json({ message:error.details[0].message.replace("must be a string","doit être une chaîne")});
+            }
             return res.status(400).json({ message: error.details[0].message });
         }
        
@@ -134,6 +144,9 @@ export const UpdateProfile=async(req, res)=>{
         const { error, value } = updateUserSchema.validate(req.body);
         if (error) {
             // Return a 400 Bad Request response if validation fails
+            if(error.details[0].message.includes("is not allowed to be empty")){
+                return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
+            }
             return res.status(400).json({ message: error.details[0].message });
         }
 
@@ -190,6 +203,9 @@ export const UpdateUsers=async(req, res)=>{
         const { error, value } = updateUserSchema.validate(req.body);
         if (error) {
             // Return a 400 Bad Request response if validation fails
+            if(error.details[0].message.includes("is not allowed to be empty")){
+                return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
+            }
             return res.status(400).json({ message: error.details[0].message });
         }
 

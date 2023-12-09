@@ -12,12 +12,12 @@ import { toast } from 'react-toastify';
 const BasicFormControlClass = () => {
     const [loading,setLoading]=useState(false);
     const validationSchema = yup.object({
-        name: yup.string().required().min(2),
-        email: yup.string().required('Please enter your email').email(),
-        phone : yup.string().required(),
-        street : yup.string().required(),
-        city: yup.string().required(),
-        zip: yup.number().required(),
+        name: yup.string('Only Alphabets are allowed').required('Veuillez entrer un nom').min(2,'Le nom doit comporter au moins 2 caractères').typeError('Seuls les alphabets sont autorisés'),
+        email: yup.string().required('Veuillez entrer votre email').email().typeError('Seuls les alphabets sont autorisés'),
+        phone : yup.string().required('Veuillez entrer le téléphone').typeError('Seuls les alphabets sont autorisés'),
+        street : yup.string().required('Veuillez entrer la rue').typeError('Seuls les alphabets sont autorisés'),
+        city: yup.string().required('Veuillez entrer la ville').typeError('Seuls les alphabets sont autorisés'),
+        zip: yup.number().required('Veuillez entrer le code postal').typeError('Only Numbers are allowed'),
     });
 
     const formik = useFormik({

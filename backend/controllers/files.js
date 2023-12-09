@@ -11,14 +11,18 @@ cloudinary.config({
 
 
 const addFileSchema = Joi.object({
-    name: Joi.string().min(1).max(30).required(),
+    name: Joi.string().required().messages({
+        'string.base': "le nom doit être une chaîne"
+    }),
     folder_id:Joi.allow(),
     
 });
 
 const updateFileSchema = Joi.object({
     _id: Joi.allow(),
-    name: Joi.string().min(1).max(30).required(),
+    name: Joi.string().required().messages({
+        'string.base': "le nom doit être une chaîne"
+    }),
     folder_id:Joi.allow(),
 });
 
@@ -31,6 +35,9 @@ export const createFile= async (req, res)=>{
 
         if (error) {
             // Return a 400 Bad Request response if validation fails
+            if(error.details[0].message.includes("is not allowed to be empty")){
+                return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
+            }
             return res.status(400).json({ message: error.details[0].message });
         }
        
@@ -119,9 +126,8 @@ export const UpdateFiles=async(req, res)=>{
     try{
         
         const { error, value } = updateFileSchema.validate(req.body);
-        if (error) {
-            // Return a 400 Bad Request response if validation fails
-            return res.status(400).json({ message: error.details[0].message });
+        if(error.details[0].message.includes("is not allowed to be empty")){
+            return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
         }
 
         const existingFile=await Files.findOne({

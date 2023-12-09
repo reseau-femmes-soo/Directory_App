@@ -3,14 +3,16 @@ import Folders from "../models/folder.js";
 import Joi from 'joi';
 
 const addFolderSchema = Joi.object({
-    name: Joi.string().min(1).max(30).required(),
+    name: Joi.string().required(),
     parent_id:Joi.allow(),
     
 });
 
 const updateFolderSchema = Joi.object({
     _id: Joi.allow(),
-    name: Joi.string().min(1).max(30).required(),
+    name: Joi.string().required().messages({
+        'string.base': "le nom doit être une chaîne"
+    }),
     parent_id:Joi.allow(),
 });
 
@@ -22,6 +24,9 @@ export const createFolder= async (req, res)=>{
 
         if (error) {
             // Return a 400 Bad Request response if validation fails
+            if(error.details[0].message.includes("is not allowed to be empty")){
+                return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
+            }
             return res.status(400).json({ message: error.details[0].message });
         }
        
@@ -88,6 +93,9 @@ export const UpdateFolders=async(req, res)=>{
         const { error, value } = updateFolderSchema.validate(req.body);
         if (error) {
             // Return a 400 Bad Request response if validation fails
+            if(error.details[0].message.includes("is not allowed to be empty")){
+                return res.status(400).json({ message:error.details[0].message.replace("is not allowed to be empty","il n'est pas permis d'être vide")});
+            }
             return res.status(400).json({ message: error.details[0].message });
         }
 

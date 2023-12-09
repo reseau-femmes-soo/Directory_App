@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import { Breadcrumbs } from '../../../AbstractElements';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import DataTableComponent from './DataTableComponent';
-
+import { LuUserPlus2 } from "react-icons/lu";
 const DataTables = () => {
 
   return (
@@ -13,7 +13,7 @@ const DataTables = () => {
         <Row>
           <Col sm="12">
             <Card>
-              <HeaderCard title="Réseau-femmes Members" link="add_member" link_text={"Ajouter un membre"}/>
+              <HeaderCard title="Réseau-femmes Members" link="add_member" link_text={"Ajouter un membre"} icon={<LuUserPlus2 style={{fontSize:'25px'}}/>}/>
                
               <CardBody>
                 <DataTableComponent />
