@@ -46,7 +46,7 @@ const Signin = ({ selected }) => {
 
   const validationSchema = yup.object({
     email: yup.string().required('Veuillez entrer votre email').email('Entrez une adresse email valide').typeError('Seuls les alphabets sont autorisés'),
-    password : yup.string().required('Veuillez entrer le mot de passe').typeError('Seuls les alphabets sont autorisés').min(8,'password length must be equal or greater than 8'),
+    password : yup.string().required('Veuillez entrer le mot de passe').typeError('Seuls les alphabets sont autorisés').min(8,'la longueur du mot de passe doit être égale ou supérieure à 8'),
   });
 
   const formik = useFormik({
