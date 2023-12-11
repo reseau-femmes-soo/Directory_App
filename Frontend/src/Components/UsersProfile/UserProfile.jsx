@@ -211,7 +211,7 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
             
               <Col md={12}>
                 <FormGroup>
-                  <Label for='phone'>Pas de téléphone.</Label>
+                  <Label for='phone'>Téléphone</Label>
                   <Input
                     type='tel'
                     name='phone'

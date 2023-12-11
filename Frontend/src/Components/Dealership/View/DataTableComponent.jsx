@@ -42,7 +42,7 @@ const DataTableComponent = () => {
         } 
       } catch (error) {
         console.error('Error deleting user profile:', error);
-        // Display a user-friendly error message to the user
+        
       }
     };
   useEffect(() => {
@@ -87,8 +87,7 @@ const DataTableComponent = () => {
         name: 'Actions',
         selector: (row) => (
           <MdClose  style={{ fontSize: '23px', color: 'red',cursor:'pointer',float:'right'}} onClick={()=>confirm_delete(row._id)}/>
-          ),
-        
+        ),
         center: true,
         
       },
