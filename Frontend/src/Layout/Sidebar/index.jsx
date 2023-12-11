@@ -66,7 +66,7 @@ const Sidebar = (props) => {
   };
 
   const activeClass = () => {
-    // document.querySelector('.sidebar-link').classList.add('active');
+    document.querySelector('.sidebar-link').classList.add('active');
     document.querySelector(".bg-overlay1").classList.add("active");
   };
 
@@ -116,7 +116,7 @@ const Sidebar = (props) => {
         <SidebarIcon />
         <SidebarLogo />
         {/* sidebartoogle={sidebartoogle} */}
-        <SidebarMenu setMainMenu={setMainMenu} props={props} setNavActive={setNavActive} activeClass={activeClass} width={width} />
+        <SidebarMenu setMainMenu={setMainMenu} props={props} setNavActive={setNavActive}  width={width} />
       </div>
     </Fragment>
   );

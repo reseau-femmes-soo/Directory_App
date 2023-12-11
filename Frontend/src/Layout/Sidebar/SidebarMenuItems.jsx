@@ -60,7 +60,7 @@ const SidebarMenuItems = ({ setMainMenu, sidebartoogle, setNavActive, activeClas
               {menuItem.type === "sub" ? (
                 <a
                   href="javascript"
-                  className={`sidebar-link sidebar-title ${CurrentPath.includes(menuItem.title.toLowerCase()) ? "active" : ""} ${menuItem.active && "active"}`}
+                  className={`sidebar-link sidebar-title ${CurrentPath.includes(menuItem.title.toLowerCase()) ? "" : ""} ${menuItem.active && "active"}`}
                   onClick={(event) => {
                     event.preventDefault();
                     setNavActive(menuItem);
@@ -77,7 +77,7 @@ const SidebarMenuItems = ({ setMainMenu, sidebartoogle, setNavActive, activeClas
               )}
 
               {menuItem.type === "link" ? (
-                <Link to={menuItem.path } className={`sidebar-link sidebar-title link-nav  ${CurrentPath.includes(menuItem.title.toLowerCase()) ? "active" : ""}`} onClick={() => toggletNavActive(menuItem)} style={{ textDecoration: 'none' }}>
+                <Link to={menuItem.path } className={`sidebar-link sidebar-title link-nav  ${CurrentPath.includes(menuItem.title.toLowerCase()) ? "" : ""}`} onClick={() => toggletNavActive(menuItem)} style={{ textDecoration: 'none' }}>
                
                  <i className= {`icofont  ${menuItem.icon}`  } style={{fontSize : '18px'}}></i> &nbsp; 
                   <span>{(menuItem.title)}</span>
