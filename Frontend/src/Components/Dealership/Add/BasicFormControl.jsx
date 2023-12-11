@@ -17,7 +17,7 @@ const BasicFormControlClass = () => {
         phone : yup.string().required('Veuillez entrer le téléphone').typeError('Seuls les alphabets sont autorisés'),
         street : yup.string().required('Veuillez entrer la rue').typeError('Seuls les alphabets sont autorisés'),
         city: yup.string().required('Veuillez entrer la ville').typeError('Seuls les alphabets sont autorisés'),
-        zip: yup.number().required('Veuillez entrer le code postal').typeError('Only Numbers are allowed'),
+        zip: yup.string().required('Veuillez entrer le code postal').typeError('Seuls les alphabets sont autorisés'),
     });
 
     const formik = useFormik({

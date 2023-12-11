@@ -36,7 +36,7 @@ export const Data = [
       {
         title:"Code Postal",
         placeholder: "Entrez votre code postal", 
-        type:"number",
+        type:"text",
         name :"zip"
      },
      
