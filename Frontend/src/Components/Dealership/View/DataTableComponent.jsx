@@ -100,7 +100,6 @@ const DataTableComponent = () => {
         columns={tableColumns}
         striped={true}
         center={true}
-        pagination
       />
       <Modal show={showDeleteFolderModal} onHide={() => setShowDeleteFolderModal(false)} centered>
         <Modal.Header closeButton style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
