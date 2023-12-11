@@ -7,7 +7,7 @@ const auth= async (req,res,next)=>{
         const authorization=req.headers.authorization;
         if(!authorization){
             return res.status(401).json({
-                message: "Unauthorized User"
+                message: "Utilisateur non autorisé"
             });
         }
  
@@ -18,7 +18,7 @@ const auth= async (req,res,next)=>{
     }catch(error){  
         console.log(error);
         return res.status(401).json({
-            message: "Unauthorized User"
+            message: "Utilisateur non autorisé"
         });
     }
 }
