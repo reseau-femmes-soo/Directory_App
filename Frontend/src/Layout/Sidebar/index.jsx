@@ -18,7 +18,7 @@ const Sidebar = (props) => {
   const [mainmenu, setMainMenu] = useState(MENUITEMS);
   
   const [width, setWidth] = useState(0);
-
+  // handle scroll
   const handleScroll = () => {
     if (window.scrollY > 400) {
       document.querySelector(".sidebar-main").className = "sidebar-main hovered";
