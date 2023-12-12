@@ -24,14 +24,15 @@ const UserProfile = () => {
     state: '',
     country: '',
     zip: '',
-    role:''
+    role:'',
+    profile_image:''
   });
   const [profile_image,setProfileImage]=useState(null);
 
   const fetchData=async()=>{
     const response= await GET('user/profile',setLoading);
+    
     if(response){
-      console.log(response.data)
       setUser(response.data)
     }
     
@@ -56,7 +57,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     const response= await PATCHFILE('/user/profile',{...user,profile_image:profile_image},setLoading);
-
+    
     if(response){
       toast.success(response.data.message);
       fetchData();
@@ -80,7 +81,7 @@ const handleSubmit = async (e) => {
           <div className='user-image'>
             <div className='avatar'>
               {
-                user.profile_image?
+                console.log(user)||user.profile_image?
                 <Image attrImage={{ className: 'step1', alt: '', src:`${user.profile_image.url}` }} />
                 :
                 <Image attrImage={{ className: 'step1', alt: '', src: `${require('../../assets/images/user/sample.png')}` }} />
@@ -146,8 +147,8 @@ const handleSubmit = async (e) => {
                           {'Emplacement'}
                         </H6>
                         <span>
-                            {user.street!=""?user.street+",":''}
-                            {user.city!=""?user.city:''}
+                            {user.street!=""?user.street:''}
+                            {user.city!=""?", "+user.city:''}
                         </span>
                       </div>
                     </Col>
@@ -157,7 +158,7 @@ const handleSubmit = async (e) => {
                           <i className='fa fa-phone me-2'></i>
                           {'Code postal'}
                         </H6>
-                        <span>{user.zip?user.zip:'None'}</span>
+                        <span>{user.zip?user.zip:''}</span>
                       </div>
                     </Col>
                   </Row>
@@ -284,7 +285,7 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
           <div>
           <ModalFooter>
               <button className='btn' type='submit' disabled={loading}>
-                {loading?'Enregistrer les modifications...':'Sauvegarder les modifications'}
+                {loading?'Enregistrer...':'Sauvegarder'}
               </button>
               <button className='btn' onClick={closeModal}>
               Fermer

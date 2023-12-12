@@ -16,7 +16,9 @@ import Password from '../Components/Password';
 import Add from '../Components/Dealership/Add';
 import View from '../Components/Dealership/View';
 import FolderComponent from '../Components/FileManager/FolderComponent'
+ 
 
+import Authorized from '../Components/Authorized'
 
 // setup fake backend
 
@@ -37,14 +39,14 @@ const Routers = () => {
           <Fragment >
           <Route element={<AppLayout />} >
          
-          <Route  path={'/profile'} element={<UsersProfileContain />} />
-          <Route  path={'/password'} element={<Password />} />
-          <Route  path={'/home'} element={<Home />} />
+          <Route  path={'/profile'} element={<Authorized Component={UsersProfileContain}  Role={["admin","member"]}/>} />
+          <Route  path={'/password'} element={<Authorized Component={Password}  Role={["admin","member"]}/>} />
+          <Route  path={'/home'} element={<Authorized Component={Home}  Role={["admin","member"]}/>} />
 
-          <Route  path={'/add_member'} element={<Add />} />
-          <Route  path={'/members'} element={<View/>} />
-          <Route path="/folders/:folderId/" element={<FolderComponent/>} />
-
+          <Route  path={'/add_member'} element={<Authorized  Component={Add}  Role={["admin"]}/>} />
+          <Route  path={'/members'} element={<Authorized Component={View}  Role={["admin"]}/>} />
+          <Route path="/folders/:folderId/" element={<Authorized Component={FolderComponent}  Role={["admin","member"]}/>} />
+          
           </Route>
           </Fragment>
 

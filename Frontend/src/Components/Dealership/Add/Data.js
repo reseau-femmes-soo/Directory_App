@@ -14,6 +14,12 @@ export const Data = [
         name :"email"
      },
      {
+        title:"Mot de passe",
+        placeholder: "Entrer le mot de passe", 
+        type:"text",
+        name :"password"
+     },
+     {
          title:"Téléphone",
          placeholder: "Entrez votre téléphone", 
          type:"text",

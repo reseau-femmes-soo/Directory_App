@@ -8,22 +8,26 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { POSTFILE } from '../../../api/Axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 const BasicFormControlClass = () => {
+    const navigate=useNavigate();
     const [loading,setLoading]=useState(false);
     const validationSchema = yup.object({
         name: yup.string('Only Alphabets are allowed').required('Veuillez entrer un nom').min(2,'Le nom doit comporter au moins 2 caractères').typeError('Seuls les alphabets sont autorisés'),
         email: yup.string().required('Veuillez entrer votre email').email().typeError('Seuls les alphabets sont autorisés'),
+        password : yup.string().required('Veuillez entrer le mot de passe').typeError('Seuls les alphabets sont autorisés').min(8,"La longueur du mot de passe doit être supérieure à 7"),
         phone : yup.string().required('Veuillez entrer le téléphone').typeError('Seuls les alphabets sont autorisés'),
-        street : yup.string().required('Veuillez entrer la rue').typeError('Seuls les alphabets sont autorisés'),
-        city: yup.string().required('Veuillez entrer la ville').typeError('Seuls les alphabets sont autorisés'),
-        zip: yup.string().required('Veuillez entrer le code postal').typeError('Seuls les alphabets sont autorisés'),
+        street : yup.string().typeError('Seuls les alphabets sont autorisés'),
+        city: yup.string().typeError('Seuls les alphabets sont autorisés'),
+        zip: yup.string().typeError('Seuls les alphabets sont autorisés'),
     });
 
     const formik = useFormik({
         initialValues: {
             name: '',
             email: '', 
+            password: '', 
             phone:'',
             street:'',
             city:'',
@@ -41,9 +45,9 @@ const BasicFormControlClass = () => {
                 if(response){
                     setLoading(false)
                     toast.success(response.data.message)
-                    console.log(response)
+                    formik.resetForm();
+                    navigate('/members');
                 }
-                formik.resetForm();
             },
        });
     return (
@@ -63,7 +67,6 @@ const BasicFormControlClass = () => {
                                         <label htmlFor="fileInput" style={{ cursor: 'pointer',border:'1px solid #dee2e6',width:'100%',height:'40px',borderRadius:'5px',padding:'7px' }}>
                                         {/* Custom text for the file input */}
                                         Choisir le fichier: {formik.values[item.name]!=null ? formik.values[item.name].name: 'Aucun fichier...'}
-                                        {console.log(formik.values[item.name])}
                                         </label>
                                         <Input className="form-control" id="fileInput" style={{ display: 'none' }}  name={item.name} type={item.type} onChange= {(e) => formik.setFieldValue(item.name, e.currentTarget.files[0]) } />
                                     </>

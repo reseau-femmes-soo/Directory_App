@@ -97,7 +97,7 @@ export const PATCHFILE = async (url,data,loading) => {
     console.log(url)
     const token = localStorage.getItem('token');
     if (!token) {
-      throw new Error('Token not found in local storage');
+      throw new Error('Jeton introuvable dans le stockage local');
     }
 
     console.log('Token:', token);

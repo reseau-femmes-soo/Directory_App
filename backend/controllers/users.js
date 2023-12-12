@@ -18,6 +18,7 @@ const addUserSchema = Joi.object({
     email: Joi.string().email().required().messages({
         'string.email': '\"e-mail\" doit être une adresse e-mail valide',
     }),
+    password: Joi.string().required(),
     phone: Joi.string().required(),
     job_designation:Joi.string().allow(null),
     address: Joi.string(),
@@ -39,7 +40,7 @@ const updateUserSchema = Joi.object({
 
 export const createUser= async (req, res)=>{   
     
-    const {email}=req.body;
+    const {email,password}=req.body;
     const user=req.body;
     try{
         const { error, value } = addUserSchema.validate(req.body);
@@ -75,7 +76,7 @@ export const createUser= async (req, res)=>{
                 }
             }
         }
-        const password=generatePassword(8)
+        // const password=generatePassword(8)
         const hashPassword = await bcrypt.hash(password, 10);
         const NewUser= new Users({...user,password:hashPassword});
         const savedUser = await NewUser.save();

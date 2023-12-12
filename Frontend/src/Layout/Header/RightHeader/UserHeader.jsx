@@ -37,7 +37,7 @@ const UserHeader = () => {
             className: "b-r-10 m-0 image-fluid",
             src: SampleImage,
             alt: "",
-            style:{height:"40px"}
+            style:{height:"40px",width:"40px"}
           }}
           
         />
