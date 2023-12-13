@@ -27,6 +27,19 @@ const UserProfile = () => {
     role:'',
     profile_image:''
   });
+  const [edituser, setEditUser] = useState({
+    name: '',
+    job_desgination: '',
+    email: '',
+    phone: '',
+    street: '',
+    city: '',
+    state: '',
+    country: '',
+    zip: '',
+    role:'',
+    profile_image:''
+  });
   const [profile_image,setProfileImage]=useState(null);
 
   const fetchData=async()=>{
@@ -34,6 +47,7 @@ const UserProfile = () => {
     
     if(response){
       setUser(response.data)
+      setEditUser(response.data)
     }
     
   }
@@ -51,12 +65,13 @@ const UserProfile = () => {
   // Function to close the modal
   const closeModal = () => {
     setShowModal(false);
+    setEditUser(user)
   };
 
 const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response= await PATCHFILE('/user/profile',{...user,profile_image:profile_image},setLoading);
+    const response= await PATCHFILE('/user/profile',{...edituser,profile_image:profile_image},setLoading);
     
     if(response){
       toast.success(response.data.message);
@@ -94,8 +109,8 @@ const handleSubmit = async (e) => {
               showModal={showModal}
               closeModal={closeModal}
               handleSubmit={handleSubmit}
-              user={user}
-              setUser={setUser}
+              user={edituser}
+              setUser={setEditUser}
               profile_image={profile_image}
               setProfileImage={setProfileImage}
               loading={loading}
@@ -287,7 +302,7 @@ const ProfileModal = ({ showModal, closeModal, handleSubmit, user, setUser,profi
               <button className='btn' type='submit' disabled={loading}>
                 {loading?'Enregistrer...':'Sauvegarder'}
               </button>
-              <button className='btn' onClick={closeModal}>
+              <button className='btn' type='button' onClick={closeModal}>
               Fermer
               </button>
           </ModalFooter>

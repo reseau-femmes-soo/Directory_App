@@ -25,6 +25,7 @@ const DataTableComponent = () => {
     const response = await GET('/user',setLoading);
     if(response){
       setData(response.data)
+      setLoading(false)
     }  
     
   };
@@ -95,29 +96,42 @@ const DataTableComponent = () => {
 
   return (
     <Fragment>
-      <DataTable
-        data={data}
-        columns={tableColumns}
-        striped={true}
-        center={true}
-      />
-      <Modal show={showDeleteFolderModal} onHide={() => setShowDeleteFolderModal(false)} centered>
-        <Modal.Header closeButton style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
-        <RiErrorWarningLine className="error-icon" style={{ color: 'orange', fontSize: '80px' }} />
-        </Modal.Header>
-        <Modal.Body>
-          <h5 style={{textAlign:'center', marginTop:'-20px'}}>Êtes-vous sûr de vouloir supprimer?</h5>
-          <p style={{textAlign:'center'}}>Vous ne pourrez pas revenir en arrière!</p>
-        </Modal.Body>
-        <Modal.Footer style={{display:'flex', justifyContent:'center'}}>
-        <button className={'btn'} onClick={()=>handleDelete()} disabled={deleteUser}>
-            {deleteUser?'Suppression':'Oui, supprimez-le !'}
-          </button>
-          <button className={'btn'} disabled={deleteUser} onClick={() => setShowDeleteFolderModal(false)}>
-          Annuler
-          </button>
-        </Modal.Footer>
-      </Modal>
+      {
+        loading && data.length==0?(
+          <p className='text-center'>Chargement...</p>
+        ):
+        !loading && data.length==0?(
+          <p className='text-center'>Aucune donnée n'est disponible</p>
+        ):(
+        <>
+          <DataTable
+            data={data}
+            columns={tableColumns}
+            striped={true}
+            center={true}
+          />
+          <Modal show={showDeleteFolderModal} onHide={() => setShowDeleteFolderModal(false)} centered>
+            <Modal.Header closeButton style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+            <RiErrorWarningLine className="error-icon" style={{ color: 'orange', fontSize: '80px' }} />
+            </Modal.Header>
+            <Modal.Body>
+              <h5 style={{textAlign:'center', marginTop:'-20px'}}>Êtes-vous sûr de vouloir supprimer?</h5>
+              <p style={{textAlign:'center'}}>Vous ne pourrez pas revenir en arrière!</p>
+            </Modal.Body>
+            <Modal.Footer style={{display:'flex', justifyContent:'center'}}>
+            <button className={'btn'} onClick={()=>handleDelete()} disabled={deleteUser}>
+                {deleteUser?'Suppression':'Oui, supprimez-le !'}
+              </button>
+              <button className={'btn'} disabled={deleteUser} onClick={() => setShowDeleteFolderModal(false)}>
+              Annuler
+              </button>
+            </Modal.Footer>
+          </Modal>
+        </>
+          
+        )
+      }
+      
     </Fragment>
   );
 };
